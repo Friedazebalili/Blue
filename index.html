@@ -82,6 +82,25 @@ background: linear-gradient(to right, #4ade80, #14a800);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 }
+ /* Auto-scrolling reviews */
+.review-track {
+  animation: scrollReviews 40s linear infinite;
+}
+
+@keyframes scrollReviews {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause on hover */
+.review-wrapper:hover .review-track {
+  animation-play-state: paused;
+}
+
 </style>
 </head>
 <body class="text-slate-400 selection:bg-cyan-500 selection:text-black antialiased">
@@ -360,8 +379,10 @@ I combine the aesthetic eye of a designer with the ruthless efficiency of a syst
             </div>
 
             <!-- Review Scroller -->
-            <div class="w-full overflow-x-auto no-scrollbar px-6">
-                <div class="flex gap-6 w-max pb-8">
+           <div class="w-full overflow-hidden px-6 review-wrapper">
+
+           <div class="flex gap-6 w-max pb-8 review-track">
+
                     
                     <!-- Review Card 1 -->
                     <div class="w-[350px] md:w-[450px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 hover:border-green-500/30 transition-colors flex flex-col justify-between group">
