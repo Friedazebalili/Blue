@@ -82,8 +82,10 @@ background: linear-gradient(to right, #4ade80, #14a800);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 }
- /* Auto-scrolling reviews */
+/* Auto-scrolling reviews */
 .review-track {
+  display: flex;
+  width: max-content; /* Critical: allows the track to extend past the screen width */
   animation: scrollReviews 40s linear infinite;
 }
 
@@ -92,6 +94,7 @@ background: linear-gradient(to right, #4ade80, #14a800);
     transform: translateX(0);
   }
   100% {
+    /* Moves by exactly half (the first set of cards) */
     transform: translateX(-50%);
   }
 }
