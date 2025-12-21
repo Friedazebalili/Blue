@@ -82,8 +82,11 @@ background: linear-gradient(to right, #4ade80, #14a800);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 }
- /* Auto-scrolling reviews */
+
+/*  Auto-scrolling reviews */
 .review-track {
+  display: flex;
+  width: max-content; /* Vital for the loop */
   animation: scrollReviews 40s linear infinite;
 }
 
@@ -92,7 +95,9 @@ background: linear-gradient(to right, #4ade80, #14a800);
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    /* We move by 50% because the content is duplicated in HTML */
+    /* We subtract 12px (half of gap-6) to keep the spacing perfect */
+    transform: translateX(calc(-50% - 12px)); 
   }
 }
 
@@ -430,10 +435,24 @@ I combine the aesthetic eye of a designer with the ruthless efficiency of a syst
                 <p class="mt-4 text-slate-400">Verified reviews from Upwork  &amp; Direct Clients.</p>
             </div>
 
-            <!-- Review Scroller -->
-           <div class="w-full overflow-hidden px-6 review-wrapper">
+           <div class="w-full overflow-hidden relative">
+    <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10"></div>
+    <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10"></div>
 
-           <div class="flex gap-6 w-max pb-8 review-track">
+    <div class="flex gap-6 w-max pb-8 animate-scroll">
+        
+        <div class="flex gap-6">
+            <div class="w-[350px] md:w-[450px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 hover:border-green-500/30 transition-colors flex flex-col justify-between group">
+                </div>
+            </div>
+
+        <div class="flex gap-6" aria-hidden="true">
+            <div class="w-[350px] md:w-[450px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 hover:border-green-500/30 transition-colors flex flex-col justify-between group">
+                </div>
+            </div>
+
+    </div>
+</div>
 
                     
                     <!-- Review Card 1 -->
