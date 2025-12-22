@@ -21,25 +21,25 @@ h1, h2, h3, h4, .font-display {
 font-family: 'Syne', sans-serif;
 }
 
-/* --- 3D GLOBE GRID SYSTEM --- */
+/* --- 3D GLOBE & GALAXY SYSTEM --- */
 .grid-bg {
     position: fixed;
     inset: 0;
-    background-color: #010205; /* Deep Space Base */
-    z-index: -10 !important; /* Forces it behind all content/cards */
+    background-color: #010205; 
+    z-index: -10 !important; 
     pointer-events: none;
     overflow: hidden;
     perspective: 1000px;
 }
 
-/* THE GALAXY NEBULA (Behind the Globe) */
+/* THE GALAXY NEBULA */
 .grid-bg::before {
     content: "";
     position: absolute;
     inset: -50%;
     background: 
-        radial-gradient(circle at 30% 40%, rgba(34, 211, 238, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 70% 60%, rgba(37, 99, 235, 0.12) 0%, transparent 40%);
+        radial-gradient(circle at 30% 40%, rgba(34, 211, 238, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(37, 99, 235, 0.15) 0%, transparent 40%);
     filter: blur(100px);
     z-index: -11;
 }
@@ -48,43 +48,29 @@ font-family: 'Syne', sans-serif;
 .grid-bg::after {
     content: "";
     position: absolute;
-    /* We make the grid much larger than the screen to allow for the curve */
     top: 50%;
     left: 50%;
     width: 150vmax;
     height: 150vmax;
     transform: translate(-50%, -50%);
-    
-    /* The Tile Grid Lines */
     background-image: 
         /* Stars Layer */
         radial-gradient(1px 1px at 10% 10%, #fff, transparent),
         radial-gradient(1.5px 1.5px at 50% 50%, #22d3ee, transparent),
         /* Grid Lines */
-        linear-gradient(to right, rgba(34, 211, 238, 0.2) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(34, 211, 238, 0.2) 1px, transparent 1px);
+        linear-gradient(to right, rgba(34, 211, 238, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(34, 211, 238, 0.25) 1px, transparent 1px);
     background-size: 400px 400px, 400px 400px, 80px 80px, 80px 80px;
 
-    /* THE GLOBE EFFECT: This creates the 3D spherical distortion */
-    mask-image: radial-gradient(circle at center, 
-        black 0%, 
-        rgba(0,0,0,0.8) 20%, 
-        rgba(0,0,0,0.4) 40%, 
-        transparent 65%
-    );
-    -webkit-mask-image: radial-gradient(circle at center, 
-        black 0%, 
-        rgba(0,0,0,0.8) 20%, 
-        rgba(0,0,0,0.4) 40%, 
-        transparent 65%
-    );
+    /* Spherize Effect */
+    -webkit-mask-image: radial-gradient(circle at center, black 0%, rgba(0,0,0,0.8) 20%, transparent 65%);
+    mask-image: radial-gradient(circle at center, black 0%, rgba(0,0,0,0.8) 20%, transparent 65%);
 
-    /* Slow rotation to make the "Globe" spin */
     animation: globe-rotation 180s linear infinite;
 }
 
-/* Ensure your cards stay on top */
-section, main, footer, .relative {
+/* Fix to keep cards on top */
+section, main, footer {
     position: relative;
     z-index: 10;
 }
@@ -226,7 +212,7 @@ html, body {
 <div id="neon-cursor"></div>
 <div id="neon-dot"></div>
 <!-- Fixed Backgrounds -->
-<div class="fixed inset-0 z-0 grid-bg pointer-events-none h-[200vh]"></div>
+<div class="fixed inset-0 z-0 grid-bg pointer-events-none"></div>
 <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full h-[60vh] bg-cyan-900/10 blur-[120px] rounded-full z-0 pointer-events-none"></div>
 
 <!-- Navigation -->
