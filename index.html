@@ -104,12 +104,68 @@ background: linear-gradient(to right, #4ade80, #14a800);
 .review-wrapper:hover .review-track {
   animation-play-state: paused;
 }
+/* --- NEON CURSOR SYSTEM --- */
+/* Hide the default mouse cursor */
+html, body {
+    cursor: none !important;
+    background-color: #02040a !important; /* Forces your deep space black */
+}
 
+/* The soft outer glow */
+#neon-cursor {
+    width: 25px;
+    height: 25px;
+    border: 1.5px solid #22d3ee;
+    box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    transition: transform 0.1s ease-out;
+    transform: translate(-50%, -50%);
+}
+
+/* The sharp trailing dot */
+#neon-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #22d3ee;
+    box-shadow: 0 0 10px #22d3ee, 0 0 20px #22d3ee;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 100000;
+    transition: transform 0.2s ease-out;
+    transform: translate(-50%, -50%);
+}
+
+/* Click effect */
+.cursor-click-anim {
+    position: fixed;
+    border: 2px solid #22d3ee;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    animation: ripple 0.5s ease-out forwards;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes ripple {
+    0% { width: 0; height: 0; opacity: 1; }
+    100% { width: 80px; height: 80px; opacity: 0; }
+}
+
+/* Restore mouse on mobile so it's not broken */
+@media (max-width: 768px) {
+    html, body { cursor: auto !important; }
+    #neon-cursor, #neon-dot { display: none; }
+}
 </style>
   
 </head>
 <body class="text-slate-400 selection:bg-cyan-500 selection:text-black antialiased">
-
+<div id="neon-cursor"></div>
+<div id="neon-dot"></div>
 <!-- Fixed Backgrounds -->
 <div class="fixed inset-0 z-0 grid-bg pointer-events-none h-[200vh]"></div>
 <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full h-[60vh] bg-cyan-900/10 blur-[120px] rounded-full z-0 pointer-events-none"></div>
@@ -967,5 +1023,40 @@ Hire on Upwork
 <script>
 lucide.createIcons();
 </script>
+<script>
+    const cursor = document.getElementById('neon-cursor');
+    const dot = document.getElementById('neon-dot');
 
+    // Smooth Follow Logic
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        
+        dot.style.left = e.clientX + 'px';
+        dot.style.top = e.clientY + 'px';
+    });
+
+    // Click Ripple
+    document.addEventListener('mousedown', (e) => {
+        const ripple = document.createElement('div');
+        ripple.className = 'cursor-click-anim';
+        ripple.style.left = e.clientX + 'px';
+        ripple.style.top = e.clientY + 'px';
+        document.body.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 500);
+    });
+
+    // Hover Scaling for interactive items
+    const links = document.querySelectorAll('a, button, .group');
+    links.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(2.5)';
+            cursor.style.backgroundColor = 'rgba(34, 211, 238, 0.1)';
+        });
+        link.addEventListener('mouseleave', () => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursor.style.backgroundColor = 'transparent';
+        });
+    });
+</script>
 </body></html>
