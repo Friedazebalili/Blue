@@ -21,52 +21,67 @@ h1, h2, h3, h4, .font-display {
 font-family: 'Syne', sans-serif;
 }
 
-/* --- GALAXY BLUEPRINT GRID (Subtle & Deep) --- */
+/* --- MASSIVE GALAXY & SUBTLE GRID --- */
 .grid-bg {
     position: fixed;
     inset: 0;
-    background-color: #02040a; /* Deep Space Black */
+    background-color: #010205; /* Even deeper black for contrast */
     z-index: -1;
     pointer-events: none;
     overflow: hidden;
 }
 
-/* Layer 1: Moving Galaxy Stars */
+/* THE NEBULAS: These are the big, bright glow clouds */
 .grid-bg::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    /* Bright Cyan and Deep Blue Nebula Blooms */
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(34, 211, 238, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(37, 99, 235, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.08) 0%, transparent 60%);
+    filter: blur(100px);
+    animation: nebula-pulse 15s ease-in-out infinite alternate;
+}
+
+/* THE STARS: Multi-layered for depth */
+.grid-bg::after {
     content: "";
     position: absolute;
     inset: -100px;
     background-image: 
-        radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1.5px 1.5px at 150px 50px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 100px 180px, #fff, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 250px 250px, #22d3ee, rgba(0,0,0,0)); /* Cyan stars */
-    background-size: 350px 350px;
-    opacity: 0.15;
-    animation: stars-drift 120s linear infinite;
+        radial-gradient(1.5px 1.5px at 10% 10%, #fff, transparent),
+        radial-gradient(2px 2px at 40% 40%, #22d3ee, transparent),
+        radial-gradient(1px 1px at 70% 20%, #fff, transparent),
+        radial-gradient(2px 2px at 20% 80%, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 90% 90%, #22d3ee, transparent);
+    background-size: 400px 400px;
+    opacity: 0.4; /* Increased brightness */
+    animation: stars-twinkle 8s ease-in-out infinite alternate;
 }
 
-/* Layer 2: The Subtle Technical Grid */
-.grid-bg::after {
-    content: "";
+/* THE GRID: Soft and Technical */
+.grid-layer {
     position: absolute;
     inset: 0;
     background-image: 
-        linear-gradient(to right, rgba(34, 211, 238, 0.08) 1.5px, transparent 1.5px),
-        linear-gradient(to bottom, rgba(34, 211, 238, 0.08) 1.5px, transparent 1.5px);
-    background-size: 80px 80px;
-    
-    /* THE FIX: This makes it 'not so clear' */
-    filter: blur(0.8px); /* Softens the lines */
-    
-    /* Fades the grid out so it only shows in the center/where the user looks */
-    -webkit-mask-image: radial-gradient(circle at center, black 10%, transparent 70%);
-    mask-image: radial-gradient(circle at center, black 10%, transparent 70%);
+        linear-gradient(to right, rgba(34, 211, 238, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
+    background-size: 100px 100px;
+    mask-image: radial-gradient(circle at center, black 20%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at center, black 20%, transparent 80%);
+    filter: blur(0.5px);
 }
 
-@keyframes stars-drift {
-    from { transform: translateY(0) rotate(0deg); }
-    to { transform: translateY(-350px) rotate(5deg); }
+@keyframes nebula-pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes stars-twinkle {
+    0% { opacity: 0.3; transform: translateY(0); }
+    100% { opacity: 0.6; transform: translateY(-20px); }
 }
 /* Neon & Glows */
 .neon-blue {
