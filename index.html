@@ -9,31 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Syne:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
 
 <style>
-  const cursor = document.getElementById('cursor');
-const trail = document.getElementById('trail');
-
-window.addEventListener('mousemove', (e) => {
-    // Standard move
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    
-    // Delayed trail move
-    trail.style.left = e.clientX + 'px';
-    trail.style.top = e.clientY + 'px';
-});
-
-// Effects for hovering over links
-document.querySelectorAll('a, button').forEach(link => {
-    link.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(2.5)';
-        cursor.style.backgroundColor = 'rgba(34, 211, 238, 0.1)';
-        cursor.style.borderColor = 'rgba(34, 211, 238, 1)';
-    });
-    link.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-        cursor.style.backgroundColor = 'rgba(34, 211, 238, 0.3)';
-    });
-});
+  
 body {
 font-family: 'Inter', sans-serif;
 background-color: #02040a; /* Deep space black */
