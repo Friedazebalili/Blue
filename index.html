@@ -21,41 +21,52 @@ h1, h2, h3, h4, .font-display {
 font-family: 'Syne', sans-serif;
 }
 
-/* --- GALAXY GRID SYSTEM --- */
-
-
-/* --- UNIQUE VARIABLE BLUEPRINT GRID --- */
+/* --- GALAXY BLUEPRINT GRID (Subtle & Deep) --- */
 .grid-bg {
     position: fixed;
     inset: 0;
-    background-color: #02040a; /* Keeps your deep space black */
-    z-index: -1; /* Ensures it stays behind content */
+    background-color: #02040a; /* Deep Space Black */
+    z-index: -1;
     pointer-events: none;
+    overflow: hidden;
 }
 
-/* Layer 1: The Major Grid (Large squares) */
+/* Layer 1: Moving Galaxy Stars */
 .grid-bg::before {
     content: "";
     position: absolute;
-    inset: 0;
+    inset: -100px;
     background-image: 
-        linear-gradient(to right, rgba(34, 211, 238, 0.12) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(34, 211, 238, 0.12) 1px, transparent 1px);
-    background-size: 100px 100px;
+        radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 150px 50px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 100px 180px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 250px 250px, #22d3ee, rgba(0,0,0,0)); /* Cyan stars */
+    background-size: 350px 350px;
+    opacity: 0.15;
+    animation: stars-drift 120s linear infinite;
 }
 
-/* Layer 2: The Minor Grid (Tiny technical squares) */
+/* Layer 2: The Subtle Technical Grid */
 .grid-bg::after {
     content: "";
     position: absolute;
     inset: 0;
     background-image: 
-        linear-gradient(to right, rgba(34, 211, 238, 0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(34, 211, 238, 0.04) 1px, transparent 1px);
-    background-size: 20px 20px;
-    /* This creates a glowing 'Vignette' so the grid fades out at the screen edges */
-    mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
-    -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+        linear-gradient(to right, rgba(34, 211, 238, 0.08) 1.5px, transparent 1.5px),
+        linear-gradient(to bottom, rgba(34, 211, 238, 0.08) 1.5px, transparent 1.5px);
+    background-size: 80px 80px;
+    
+    /* THE FIX: This makes it 'not so clear' */
+    filter: blur(0.8px); /* Softens the lines */
+    
+    /* Fades the grid out so it only shows in the center/where the user looks */
+    -webkit-mask-image: radial-gradient(circle at center, black 10%, transparent 70%);
+    mask-image: radial-gradient(circle at center, black 10%, transparent 70%);
+}
+
+@keyframes stars-drift {
+    from { transform: translateY(0) rotate(0deg); }
+    to { transform: translateY(-350px) rotate(5deg); }
 }
 /* Neon & Glows */
 .neon-blue {
