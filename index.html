@@ -1,1419 +1,512 @@
-<html lang="en" class="scroll-smooth"><head>
+<!doctype html>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BLUE - Shopify Developer</title>
-<script src="https://unpkg.com/lucide@latest"></script>
-<script src="https://cdn.tailwindcss.com"></script>
+<title>Friedaze (Blue) · Shopify Developer</title>
+<meta name="description" content="Friedaze (Blue) builds Shopify product pages, variant designs and full stores. See screenshots of 32 stores and websites I've worked on.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Syne:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  
+:root{
+  --paper:#f3efe6; --paper-2:#ebe5d8; --card:#fbf9f4;
+  --ink:#151412; --ink-2:#3a3833; --muted:#77736a; --line:#d9d2c3;
+  --accent:#1e5c43; --lime:#d4f36b; --pink:#f3b6c4; --sky:#b9d8f5; --sand:#f1d38a;
+  --radius:14px;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+em{font-family:var(--serif);font-style:italic;font-weight:400}
+::selection{background:var(--lime)}
 
-body {
-    /* Deep space base color */
-    font-family: 'Inter', sans-serif;
-    background-color: #02040a !important;
-    overflow-x: hidden;
-}
-h1, h2, h3, h4, .font-display {
-font-family: 'Syne', sans-serif;
-}
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:var(--serif);font-size:26px;line-height:1}
+.logo span{color:var(--accent)}
+.nav ul{display:flex;gap:28px;list-style:none;font-size:14px;color:var(--ink-2)}
+.nav ul a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:600;font-size:14px;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-ink:hover{background:var(--accent)}
+.btn-line{border:1.5px solid var(--ink)}
+.btn-line:hover{background:var(--ink);color:var(--paper)}
+.nav .btn{padding:9px 16px}
 
-/* --- MASSIVE GALAXY & SUBTLE GRID --- */
-.grid-bg {
-    position: fixed;
-    inset: 0;
-    background-color: #010205; /* Even deeper black for contrast */
-    z-index: -1;
-    pointer-events: none;
-    overflow: hidden;
-}
+/* hero */
+.hero{padding:72px 0 40px;position:relative}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+.avail{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--card);font-size:13px;color:var(--ink-2);margin-bottom:28px}
+.avail i{width:8px;height:8px;border-radius:50%;background:#2fa36b;box-shadow:0 0 0 4px rgba(47,163,107,.18)}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(46px,7vw,96px);line-height:.95;letter-spacing:-.02em;margin-bottom:24px}
+h1 .hl{background:linear-gradient(transparent 62%,var(--lime) 62%,var(--lime) 92%,transparent 92%);padding:0 .08em}
+.lead{font-size:clamp(17px,1.6vw,20px);color:var(--ink-2);max-width:34ch;margin-bottom:32px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.collage{position:relative;height:600px}
+.collage .frame{position:absolute;width:72%;box-shadow:0 30px 60px -25px rgba(30,25,15,.35)}
+.collage .h1{top:0;right:0;transform:rotate(3deg)}
+.collage .h2{top:130px;left:0;transform:rotate(-4deg);z-index:2}
+.collage .h3{top:260px;right:4%;transform:rotate(1.5deg);z-index:3}
+.collage .frame{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.collage:hover .h1{transform:rotate(5deg) translate(10px,-10px)}
+.collage:hover .h2{transform:rotate(-6deg) translate(-12px,0)}
+.collage:hover .h3{transform:rotate(0deg) translate(0,12px)}
+.sticker{position:absolute;z-index:5;left:52%;top:118px;width:118px;height:118px;border-radius:50%;background:var(--lime);display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--serif);font-size:20px;line-height:1.05;transform:rotate(-12deg);animation:spin 20s linear infinite}
+.sticker b{display:block;font-family:var(--sans);font-size:30px;font-weight:700}
+@keyframes spin{50%{transform:rotate(8deg)}}
 
-/* THE NEBULAS: These are the big, bright glow clouds */
-.grid-bg::before {
-    content: "";
-    position: absolute;
-    inset: -20%;
-    /* Bright Cyan and Deep Blue Nebula Blooms */
-    background: 
-        radial-gradient(circle at 20% 30%, rgba(34, 211, 238, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(37, 99, 235, 0.12) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.08) 0%, transparent 60%);
-    filter: blur(100px);
-    animation: nebula-pulse 15s ease-in-out infinite alternate;
-}
+/* browser frame */
+.frame{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.bar{display:flex;align-items:center;gap:12px;height:34px;padding:0 12px;border-bottom:1px solid var(--line);background:var(--paper-2)}
+.dots{display:flex;gap:5px}.dots i{width:9px;height:9px;border-radius:50%;background:#cfc7b6}
+.url{flex:1;font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--card);border-radius:6px;padding:3px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shot{aspect-ratio:4/3;overflow:hidden;background:repeating-linear-gradient(45deg,var(--paper-2) 0 10px,var(--paper) 10px 20px)}
+.shot img{color:transparent;width:100%;height:100%;object-fit:cover;object-position:top;transition:object-position 3s ease,transform .6s ease}
 
-/* THE STARS: Multi-layered for depth */
-.grid-bg::after {
-    content: "";
-    position: absolute;
-    inset: -100px;
-    background-image: 
-        radial-gradient(1.5px 1.5px at 10% 10%, #fff, transparent),
-        radial-gradient(2px 2px at 40% 40%, #22d3ee, transparent),
-        radial-gradient(1px 1px at 70% 20%, #fff, transparent),
-        radial-gradient(2px 2px at 20% 80%, #fff, transparent),
-        radial-gradient(1.5px 1.5px at 90% 90%, #22d3ee, transparent);
-    background-size: 400px 400px;
-    opacity: 0.4; /* Increased brightness */
-    animation: stars-twinkle 8s ease-in-out infinite alternate;
-}
+/* stats */
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:48px}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:28px 0;border-left:1px solid var(--line);padding-left:24px}
+.stat:first-child{border-left:0;padding-left:0}
+.stat b{display:block;font-family:var(--serif);font-weight:400;font-size:48px;line-height:1}
+.stat span{font-size:13px;color:var(--muted)}
 
-/* THE GRID: Soft and Technical */
-.grid-layer {
-    position: absolute;
-    inset: 0;
-    background-image: 
-        linear-gradient(to right, rgba(34, 211, 238, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
-    background-size: 100px 100px;
-    mask-image: radial-gradient(circle at center, black 20%, transparent 80%);
-    -webkit-mask-image: radial-gradient(circle at center, black 20%, transparent 80%);
-    filter: blur(0.5px);
-}
+/* marquee */
+.marquee{overflow:hidden;padding:22px 0;background:var(--ink);color:var(--paper)}
+.marquee-track{display:flex;gap:48px;width:max-content;animation:mq 60s linear infinite;font-family:var(--serif);font-size:30px;white-space:nowrap}
+.marquee-track span::after{content:"✦";margin-left:48px;color:var(--lime);font-size:18px;vertical-align:middle}
+@keyframes mq{to{transform:translateX(-50%)}}
 
-@keyframes nebula-pulse {
-    0% { transform: scale(1); opacity: 0.8; }
-    100% { transform: scale(1.1); opacity: 1; }
-}
+/* section heads */
+section{padding:110px 0}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:44px;flex-wrap:wrap}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5.5vw,72px);line-height:1;letter-spacing:-.015em}
+.head p{max-width:42ch;color:var(--ink-2)}
 
-@keyframes stars-twinkle {
-    0% { opacity: 0.3; transform: translateY(0); }
-    100% { opacity: 0.6; transform: translateY(-20px); }
-}
-/* Neon & Glows */
-.neon-blue {
-text-shadow: 0 0 10px rgba(6, 182, 212, 0.5), 0 0 30px rgba(6, 182, 212, 0.2);
-}
+/* work */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.filters button{font:500 14px var(--sans);padding:9px 16px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--ink-2);cursor:pointer;transition:all .2s}
+.filters button sup{font-family:var(--mono);font-size:10px;margin-left:4px;color:var(--muted)}
+.filters button:hover{border-color:var(--ink)}
+.filters button.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.filters button.on sup{color:var(--lime)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 28px}
+.card{display:block}
+.card.hide{display:none}
+.card .frame{transition:transform .35s ease,box-shadow .35s ease}
+.card:hover .frame{transform:translateY(-6px) rotate(-.6deg);box-shadow:0 24px 40px -22px rgba(30,25,15,.4)}
+.card:hover .shot img{object-position:bottom}
+.meta{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px}
+.meta h3{font-size:18px;font-weight:600}
+.sector{font-size:14px;color:var(--muted);margin-top:2px}
+.tag{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding:4px 9px;border-radius:999px;white-space:nowrap}
+.tag-product{background:var(--pink)}.tag-variant{background:var(--sky)}.tag-store{background:var(--lime)}.tag-web{background:var(--sand)}
+.more{display:flex;justify-content:center;margin-top:56px}
 
-.neon-box {
-box-shadow: 0 0 15px rgba(6, 182, 212, 0.1), inset 0 0 10px rgba(6, 182, 212, 0.05);
-}
+/* services */
+.services{background:var(--ink);color:var(--paper)}
+.services h2,.services .head p{color:var(--paper)}
+.services .head p{opacity:.7}
+.svc{display:grid;grid-template-columns:90px 1fr 1.2fr;gap:24px;padding:36px 0;border-top:1px solid rgba(243,239,230,.15);align-items:start;transition:padding .3s}
+.svc:last-child{border-bottom:1px solid rgba(243,239,230,.15)}
+.svc .n{font-family:var(--mono);color:var(--lime);font-size:13px;padding-top:12px}
+.svc h3{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.6vw,46px);line-height:1}
+.svc p{color:rgba(243,239,230,.72);font-size:16px;padding-top:6px}
+.svc p strong{color:var(--paper);font-weight:500}
+.svc:hover{padding-left:12px}
+.svc:hover h3{color:var(--lime)}
 
-/* Custom Scrollbar hide */
-.no-scrollbar::-webkit-scrollbar {
-display: none;
-}
-.no-scrollbar {
--ms-overflow-style: none;
-scrollbar-width: none;
-}
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;position:relative;min-height:230px}
+.step::before{counter-increment:s;content:counter(s);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--lime);font-family:var(--serif);font-size:24px;margin-bottom:28px}
+.step:nth-child(2)::before{background:var(--pink)}.step:nth-child(3)::before{background:var(--sky)}.step:nth-child(4)::before{background:var(--sand)}
+.step h3{font-size:18px;margin-bottom:8px}
+.step p{font-size:14.5px;color:var(--ink-2)}
 
-/* Glassmorphism utilities */
-.glass-panel {
-background: rgba(255, 255, 255, 0.02);
-backdrop-filter: blur(10px);
-border: 1px solid rgba(255, 255, 255, 0.05);
-}
+/* reviews */
+.reviews{background:var(--paper-2)}
+.quotes{columns:3;column-gap:24px}
+.quote{break-inside:avoid;margin-bottom:24px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+.quote .stars{color:var(--accent);letter-spacing:2px;font-size:14px;margin-bottom:14px}
+.quote blockquote{font-size:15.5px;color:var(--ink-2);margin-bottom:22px}
+.quote:nth-child(3n+1) blockquote{font-family:var(--serif);font-size:23px;line-height:1.25;color:var(--ink)}
+.who{display:flex;align-items:center;gap:12px;padding-top:18px;border-top:1px dashed var(--line)}
+.who i{width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:12px;font-weight:600}
+.who b{display:block;font-size:14px}.who span{font-size:12.5px;color:var(--muted)}
 
-/* Card Tilt & Hover Effects */
-.card-perspective {
-perspective: 1000px;
-}
+/* contact */
+.contact{text-align:center;padding:140px 0}
+.contact h2{font-size:clamp(48px,8vw,120px);margin-bottom:28px}
+.contact p{max-width:46ch;margin:0 auto 40px;color:var(--ink-2);font-size:18px}
+.mail{display:inline-block;font-family:var(--serif);font-size:clamp(22px,3.6vw,44px);border-bottom:2px solid var(--ink);padding-bottom:4px;margin-bottom:36px;word-break:break-all;transition:color .2s,border-color .2s}
+.mail:hover{color:var(--accent);border-color:var(--accent)}
+footer{border-top:1px solid var(--line);padding:28px 0;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
-.glow-hover {
-transition: all 0.4s ease;
-}
-.glow-hover:hover {
-box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
-border-color: rgba(6, 182, 212, 0.4);
-}
+/* reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
 
-/* Text Gradients */
-.text-gradient {
-background: linear-gradient(to right, #22d3ee, #3b82f6);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+@media (max-width:1000px){
+  .hero .wrap{grid-template-columns:1fr}
+  .collage{height:520px;max-width:560px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .quotes{columns:2}
 }
-.text-gradient-green {
-background: linear-gradient(to right, #4ade80, #14a800);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+@media (max-width:680px){
+  .nav ul{display:none}
+  .hero{padding-top:44px}
+  .collage{height:400px}
+  .collage .h2{top:90px}.collage .h3{top:180px}
+  .sticker{width:92px;height:92px;font-size:16px;top:70px}.sticker b{font-size:22px}
+  .stats .wrap{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(3){border-left:0;padding-left:0}
+  .stat{padding:20px 0 20px 16px}.stat:nth-child(odd){border-left:0;padding-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .stat b{font-size:38px}
+  section{padding:80px 0}
+  .grid{grid-template-columns:1fr}
+  .svc{grid-template-columns:1fr;gap:10px}
+  .svc .n{padding-top:0}
+  .steps{grid-template-columns:1fr}
+  .step{min-height:0}
+  .quotes{columns:1}
+  .marquee-track{font-size:22px}
 }
-/* Auto-scrolling reviews */
-.review-track {
-  display: flex;
-  width: max-content; /* Critical: allows the track to extend past the screen width */
-  animation: scrollReviews 40s linear infinite;
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
 }
-
-@keyframes scrollReviews {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    /* Moves by exactly half (the first set of cards) */
-    transform: translateX(-50%);
-  }
-}
-
-/* Pause on hover */
-.review-wrapper:hover .review-track {
-  animation-play-state: paused;
-}
-/* --- NEON CURSOR SYSTEM --- */
-/* Hide the default mouse cursor */
-html, body {
-    cursor: none !important;
-    background-color: #02040a !important; /* Forces your deep space black */
-}
-
-/* The soft outer glow */
-#neon-cursor {
-    width: 25px;
-    height: 25px;
-    border: 1.5px solid #22d3ee;
-    box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 99999;
-    transition: transform 0.1s ease-out;
-    transform: translate(-50%, -50%);
-}
-
-/* The sharp trailing dot */
-#neon-dot {
-    width: 6px;
-    height: 6px;
-    background-color: #22d3ee;
-    box-shadow: 0 0 10px #22d3ee, 0 0 20px #22d3ee;
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 100000;
-    transition: transform 0.2s ease-out;
-    transform: translate(-50%, -50%);
-}
-
-/* Click effect */
-.cursor-click-anim {
-    position: fixed;
-    border: 2px solid #22d3ee;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99998;
-    animation: ripple 0.5s ease-out forwards;
-    transform: translate(-50%, -50%);
-}
-
-@keyframes ripple {
-    0% { width: 0; height: 0; opacity: 1; }
-    100% { width: 80px; height: 80px; opacity: 0; }
-}
-
-/* Restore mouse on mobile so it's not broken */
-@media (max-width: 768px) {
-    html, body { cursor: auto !important; }
-    #neon-cursor, #neon-dot { display: none; }
-}
-
-/* --- SERVICE SHOP --- */
-.shop-filter{padding:.5rem 1.1rem;border-radius:9999px;border:1px solid rgba(255,255,255,.1);color:#cbd5e1;font-size:.875rem;transition:all .25s}
-.shop-filter:hover{border-color:rgba(74,222,128,.5);color:#fff}
-.shop-filter.is-active{background:#4ade80;border-color:#4ade80;color:#02040a;font-weight:600}
-.product{display:flex;flex-direction:column;border-radius:1rem;border:1px solid rgba(255,255,255,.08);background:#070a10;overflow:hidden;transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease,opacity .3s}
-.product:hover{transform:translateY(-6px);border-color:rgba(74,222,128,.4);box-shadow:0 20px 40px -20px rgba(74,222,128,.25)}
-.product.is-hidden{display:none}
-.product.in-cart{border-color:rgba(74,222,128,.6)}
-.product-media{position:relative;aspect-ratio:16/10;background:radial-gradient(circle at 50% 120%,rgba(34,211,238,.12),transparent 60%),linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px) 0 0/20px 20px,linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px) 0 0/20px 20px,#05070c;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center}
-.product-tag{position:absolute;top:14px;left:14px;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:3px 8px;border-radius:4px;color:#22d3ee;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2)}
-.product-tag.tag-green{color:#4ade80;background:rgba(74,222,128,.08);border-color:rgba(74,222,128,.2)}
-.product-tag.tag-pink{color:#f472b6;background:rgba(244,114,182,.08);border-color:rgba(244,114,182,.2)}
-.ill{width:72%;height:auto;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .5s ease}
-.product:hover .ill{transform:scale(1.06)}
-.s-dim{stroke:rgba(148,163,184,.35)}.s-cyan{stroke:#22d3ee}.s-green{stroke:#4ade80}.s-pink{stroke:#f472b6}
-.flow{stroke-dasharray:6 6;animation:flow 1.2s linear infinite}
-@keyframes flow{to{stroke-dashoffset:-24}}
-.needle{transform-origin:100px 100px;animation:needle 3s ease-in-out infinite alternate}
-@keyframes needle{0%{transform:rotate(-70deg)}100%{transform:rotate(0)}}
-.bars{stroke-dasharray:70;stroke-dashoffset:70;animation:grow 2.4s ease-out infinite}
-@keyframes grow{0%{stroke-dashoffset:70}50%,100%{stroke-dashoffset:0}}
-.pen{animation:pen 2s ease-in-out infinite alternate}
-@keyframes pen{to{transform:translate(-14px,4px)}}
-.product-body{padding:1.5rem 1.5rem 0;flex:1}
-.product-body h3{color:#fff;font-size:1.25rem;font-weight:700;margin-bottom:.5rem}
-.product-body p{font-size:.9rem;color:#94a3b8;line-height:1.6;margin-bottom:1rem}
-.product-body ul{font-size:.85rem;color:#cbd5e1;display:grid;gap:.4rem}
-.product-body li{padding-left:1.25rem;position:relative}
-.product-body li::before{content:"";position:absolute;left:0;top:.5em;width:.5rem;height:.5rem;border-radius:2px;background:#4ade80;opacity:.7}
-.product-foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.5rem}
-.price{font-family:ui-monospace,monospace;font-size:.75rem;color:#64748b}
-.add-btn{padding:.6rem 1.1rem;border-radius:.5rem;background:#fff;color:#02040a;font-weight:600;font-size:.85rem;transition:all .25s;white-space:nowrap}
-.add-btn:hover{background:#4ade80}
-.add-btn.added{background:transparent;color:#4ade80;box-shadow:inset 0 0 0 1px #4ade80}
-.chip{padding:.55rem 1rem;border-radius:9999px;border:1px dashed rgba(255,255,255,.2);color:#cbd5e1;font-size:.875rem;transition:all .2s}
-.chip::before{content:"+ ";color:#4ade80;font-weight:700}
-.chip:hover{border-color:#4ade80;color:#fff}
-.chip.added{border-style:solid;border-color:#4ade80;background:rgba(74,222,128,.1);color:#fff}
-.chip.added::before{content:"✓ "}
-
-/* --- ORDER TIMELINE --- */
-.timeline{position:relative;display:grid;gap:1.75rem;padding-left:2.25rem}
-.timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:rgba(255,255,255,.08)}
-.timeline::after{content:"";position:absolute;left:9px;top:6px;width:2px;height:var(--progress,0%);max-height:calc(100% - 12px);background:linear-gradient(#4ade80,#22d3ee);transition:height 1.6s ease}
-.timeline li{position:relative}
-.timeline .dot{position:absolute;left:-2.25rem;top:2px;width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.15);background:#070a10;z-index:1;transition:all .4s}
-.timeline li.done .dot{border-color:#4ade80;background:#4ade80;box-shadow:0 0 12px rgba(74,222,128,.6)}
-.timeline h4{color:#fff;font-weight:600;font-family:'Inter',sans-serif;margin-bottom:.2rem}
-.timeline p{font-size:.875rem;color:#94a3b8}
-.summary-row{display:flex;justify-content:space-between;gap:1rem;padding-bottom:1rem;border-bottom:1px dashed rgba(255,255,255,.08);color:#cbd5e1}
-.summary-row span:last-child{color:#4ade80;font-family:ui-monospace,monospace;font-size:.75rem}
-
-/* --- CART --- */
-.cart-fab{position:fixed;right:24px;bottom:24px;z-index:60;width:60px;height:60px;border-radius:50%;background:#4ade80;color:#02040a;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px -5px rgba(74,222,128,.5);transform:scale(0);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
-.cart-fab.show{transform:scale(1)}
-.cart-fab.bump{animation:bump .4s}
-@keyframes bump{50%{transform:scale(1.2)}}
-.cart-count{position:absolute;top:-4px;right:-4px;min-width:22px;height:22px;border-radius:11px;background:#fff;color:#02040a;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 5px}
-.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:70;opacity:0;pointer-events:none;transition:opacity .3s}
-.cart-overlay.open{opacity:1;pointer-events:auto}
-.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:#05070c;border-left:1px solid rgba(255,255,255,.1);z-index:80;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .4s cubic-bezier(.22,1,.36,1)}
-.cart-drawer.open{transform:translateX(0)}
-.cart-item{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 1rem;border-radius:.6rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);color:#e2e8f0;font-size:.9rem}
-.cart-item button{color:#64748b;font-size:1.1rem;line-height:1}
-.cart-item button:hover{color:#f472b6}
-.cart-input{margin-top:.5rem;width:100%;padding:.75rem 1rem;border-radius:.5rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:.9rem;outline:none;cursor:text}
-.cart-input:focus{border-color:#4ade80}
-.nav-cart{position:relative}
-.nav-cart .cart-count{top:-8px;right:-10px;min-width:18px;height:18px;font-size:10px;background:#4ade80}
-@media (prefers-reduced-motion:reduce){.flow,.needle,.bars,.pen,.review-track{animation:none}.bars{stroke-dashoffset:0}}
 </style>
-  
 </head>
-<body class="text-slate-400 selection:bg-cyan-500 selection:text-black antialiased">
-<div id="neon-cursor"></div>
-<div id="neon-dot"></div>
-<!-- Fixed Backgrounds -->
-<div class="fixed inset-0 z-0 grid-bg pointer-events-none h-[200vh]"></div>
-<div class="fixed top-0 left-1/2 -translate-x-1/2 w-full h-[60vh] bg-cyan-900/10 blur-[120px] rounded-full z-0 pointer-events-none"></div>
+<body>
 
-<!-- Navigation -->
-<nav class="fixed w-full z-50 top-0 left-0 border-b border-white/5 bg-black/60 backdrop-blur-xl">
-<div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-<a href="#" class="font-display font-bold tracking-tighter text-xl text-white hover:text-cyan-400 transition-colors duration-300 group flex items-center gap-2">
-<i data-lucide="aperture" class="w-5 h-5 text-cyan-500"></i>
-FRIEDAZE<span class="text-cyan-500 group-hover:animate-pulse">.</span>
-</a>
-<div class="hidden md:flex gap-8 text-sm font-medium items-center">
-<a href="#services" class="hover:text-cyan-400 transition-colors">Services</a>
-<a href="#process" class="hover:text-cyan-400 transition-colors">How it works</a>
-<a href="#work" class="hover:text-cyan-400 transition-colors">Work</a>
-<a href="#reviews" class="hover:text-cyan-400 transition-colors">Reviews</a>
-</div>
-<div class="flex items-center gap-5">
-<button data-open-cart class="nav-cart text-white hover:text-green-400 transition-colors" aria-label="Open your request cart">
-<i data-lucide="shopping-bag" class="w-5 h-5"></i><span class="cart-count" data-cart-count>0</span>
-</button>
-<a href="#contact" class="px-4 py-2 rounded-full border border-white/10 text-xs font-semibold text-white bg-white/5 hover:bg-cyan-500 hover:border-cyan-500 hover:text-black transition-all duration-300">
-Hire Me
-</a>
-</div>
-</div>
+<nav class="nav">
+  <div class="wrap">
+    <a href="#" class="logo">Friedaze<span>.</span></a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">What I do</a></li>
+      <li><a href="#process">How it goes</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-ink">Let's talk</a>
+  </div>
 </nav>
 
-<main class="relative z-10">
-
-<!-- Hero Section -->
-<section class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative pt-20 pb-12">
-
-<!-- Status Pill -->
-<div class="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-green-500/20 bg-green-500/5 text-green-400 text-xs font-medium tracking-wide uppercase animate-fade-in-up">
-<span class="relative flex h-2 w-2">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-<span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-</span>
-Available for Shopify projects
-</div>
-
-<div class="space-y-4 max-w-5xl mx-auto">
-<h1 class="text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter text-white font-display leading-[0.9]">
-I AM <span class="text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 to-blue-600 neon-blue">BLUE</span>
-</h1>
-
-<h2 class="text-xl md:text-2xl text-slate-300 font-display tracking-tight">
-The NERD behind <span class="text-white font-semibold">Friedaze</span>
-</h2>
-
-<p class="text-base md:text-lg text-slate-400 max-w-2xl mx-auto font-light leading-relaxed pt-4">
-I build and fix <span class="text-white font-medium">Shopify stores</span>. New stores, redesigns, slow sites, broken checkouts, the small stuff your team never gets around to.
-</p>
-
-<div class="pt-8 flex flex-col md:flex-row gap-4 justify-center items-center">
-                    <a href="#services" class="group relative px-8 py-4 bg-white text-black font-semibold rounded-none skew-x-[-12deg] hover:bg-green-400 transition-colors duration-300">
-                        <div class="skew-x-[12deg]">BROWSE SERVICES</div>
-                        <div class="absolute inset-0 border border-white group-hover:border-cyan-400 translate-x-1 translate-y-1 -z-10 transition-transform"></div>
-                    </a>
-                    <a href="#work" class="px-8 py-4 text-white font-medium hover:text-cyan-400 transition-colors flex items-center gap-2">
-                        VIEW PROJECTS <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                    </a>
-                </div>
-
-
-</div>
-
-<!-- Stats Bar -->
-<div class="mt-20 w-full max-w-4xl border-y border-white/5 bg-black/20 backdrop-blur-sm grid grid-cols-2 md:grid-cols-4 divide-x divide-white/5">
-<div class="py-6 flex flex-col items-center">
-<span class="text-3xl font-bold text-white font-display">100%</span>
-<span class="text-xs uppercase tracking-widest text-slate-500 mt-1">Job Success</span>
-</div>
-<div class="py-6 flex flex-col items-center">
-<span class="text-3xl font-bold text-white font-display">50+</span>
-<span class="text-xs uppercase tracking-widest text-slate-500 mt-1">Projects Shipped</span>
-</div>
-<div class="py-6 flex flex-col items-center">
-<span class="text-3xl font-bold text-white font-display">3yrs</span>
-<span class="text-xs uppercase tracking-widest text-slate-500 mt-1">Experience</span>
-</div>
-<div class="py-6 flex flex-col items-center">
-<span class="text-3xl font-bold text-green-400 font-display">$2M+</span>
-<span class="text-xs uppercase tracking-widest text-slate-500 mt-1">Client Revenue</span>
-</div>
-</div>
-</section>
-
-<!-- Service Shop -->
-<section id="services" class="py-28 px-6 relative">
-  <div class="max-w-7xl mx-auto">
-
-    <!-- Storefront header -->
-    <div class="flex items-center gap-2 text-xs font-mono text-slate-500 mb-6">
-      <i data-lucide="store" class="w-4 h-4 text-green-500"></i>
-      <span>friedaze.store</span><span class="text-slate-700">/</span><span class="text-slate-300">services</span>
-    </div>
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
-      <div class="max-w-2xl">
-        <h2 class="text-4xl md:text-6xl font-bold text-white font-display tracking-tight leading-[1.05] mb-5">
-          Shop for what your<br><span class="text-gradient-green">store needs.</span>
-        </h2>
-        <p class="text-slate-400 text-lg leading-relaxed">
-          Everything here is something I do for Shopify brands. Add what you need to your cart and send it over. I'll get back to you with a plan and a price. No commitment.
-        </p>
-      </div>
-      <div class="flex flex-wrap gap-2" role="tablist" aria-label="Filter services">
-        <button class="shop-filter is-active" data-filter="all">All</button>
-        <button class="shop-filter" data-filter="build">Build</button>
-        <button class="shop-filter" data-filter="grow">Grow</button>
-        <button class="shop-filter" data-filter="fix">Fix</button>
-      </div>
-    </div>
-
-    <!-- Products -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="productGrid">
-
-      <article class="product" data-cat="build">
-        <div class="product-media">
-          <span class="product-tag">Build</span>
-          <svg viewBox="0 0 200 130" class="ill" aria-hidden="true">
-            <rect x="18" y="32" width="58" height="66" rx="8" class="s-dim" stroke-dasharray="5 5"/>
-            <path d="M30 50h34M30 62h26M30 74h30" class="s-dim"/>
-            <path d="M86 65h30" class="s-cyan flow"/><path d="M108 57l8 8-8 8" class="s-cyan"/>
-            <rect x="124" y="32" width="58" height="66" rx="8" class="s-green"/>
-            <path d="M141 56h24l-3 26h-18z" class="s-green"/><path d="M147 56v-4a6 6 0 0 1 12 0v4" class="s-green"/>
-          </svg>
-        </div>
-        <div class="product-body">
-          <h3>New store or migration</h3>
-          <p>A store built from scratch, or moved over from WooCommerce or Wix with your products, customers and old links intact.</p>
-          <ul><li>Store setup &amp; theme</li><li>Product &amp; customer import</li><li>Redirects so you keep Google traffic</li></ul>
-        </div>
-        <div class="product-foot">
-          <span class="price">Quoted per project</span>
-          <button class="add-btn" data-id="store" data-name="New store or migration"><span>Add to cart</span></button>
-        </div>
-      </article>
-
-      <article class="product" data-cat="build">
-        <div class="product-media">
-          <span class="product-tag">Build</span>
-          <svg viewBox="0 0 200 130" class="ill" aria-hidden="true">
-            <rect x="28" y="16" width="144" height="98" rx="8" class="s-dim"/>
-            <path d="M28 30h144" class="s-dim"/><circle cx="38" cy="23" r="2" class="s-dim"/><circle cx="46" cy="23" r="2" class="s-dim"/>
-            <rect x="40" y="40" width="120" height="30" rx="4" class="s-cyan" stroke-dasharray="4 4"/>
-            <path d="M140 46l8 8-14 14h-8v-8z" class="s-cyan pen"/>
-            <rect x="40" y="78" width="56" height="26" rx="4" class="s-dim"/><rect x="104" y="78" width="56" height="26" rx="4" class="s-dim"/>
-          </svg>
-        </div>
-        <div class="product-body">
-          <h3>Theme design &amp; changes</h3>
-          <p>Custom sections and page layouts built so you can edit the text and images yourself later.</p>
-          <ul><li>Custom sections &amp; templates</li><li>Mobile layout that actually works</li><li>Editable from your Shopify admin</li></ul>
-        </div>
-        <div class="product-foot">
-          <span class="price">Quoted per project</span>
-          <button class="add-btn" data-id="theme" data-name="Theme design & changes"><span>Add to cart</span></button>
-        </div>
-      </article>
-
-      <article class="product" data-cat="grow">
-        <div class="product-media">
-          <span class="product-tag tag-green">Grow</span>
-          <svg viewBox="0 0 200 130" class="ill" aria-hidden="true">
-            <rect x="24" y="20" width="70" height="92" rx="8" class="s-dim"/>
-            <rect x="34" y="30" width="50" height="36" rx="4" class="s-dim"/>
-            <path d="M34 76h40M34 84h28" class="s-dim"/>
-            <rect x="34" y="94" width="50" height="10" rx="5" class="s-green"/>
-            <path d="M116 104V84M138 104V66M160 104V40" class="s-green bars" stroke-width="10" stroke-linecap="round"/>
-            <path d="M112 60l22-14 14 8 24-24" class="s-cyan flow"/>
-          </svg>
-        </div>
-        <div class="product-body">
-          <h3>More sales from the same traffic</h3>
-          <p>Better product pages, cart and upsells. Small changes here usually do more than a full redesign.</p>
-          <ul><li>Product page cleanup</li><li>Bundles, upsells &amp; cart offers</li><li>Trust badges, reviews &amp; size guides</li></ul>
-        </div>
-        <div class="product-foot">
-          <span class="price">Quoted per project</span>
-          <button class="add-btn" data-id="cro" data-name="More sales (conversion work)"><span>Add to cart</span></button>
-        </div>
-      </article>
-
-      <article class="product" data-cat="grow">
-        <div class="product-media">
-          <span class="product-tag tag-green">Grow</span>
-          <svg viewBox="0 0 200 130" class="ill" aria-hidden="true">
-            <path d="M46 100a54 54 0 0 1 108 0" class="s-dim" stroke-width="8" stroke-linecap="round"/>
-            <path d="M46 100a54 54 0 0 1 96-34" class="s-green gauge" stroke-width="8" stroke-linecap="round"/>
-            <path d="M100 100l30-30" class="s-cyan needle" stroke-width="3" stroke-linecap="round"/>
-            <circle cx="100" cy="100" r="5" class="s-cyan"/>
-          </svg>
-        </div>
-        <div class="product-body">
-          <h3>Speed &amp; SEO cleanup</h3>
-          <p>A faster store that shows up when people search for what you sell.</p>
-          <ul><li>Remove apps &amp; code you don't need</li><li>Fix slow images and scripts</li><li>Clear Search Console errors</li></ul>
-        </div>
-        <div class="product-foot">
-          <span class="price">Quoted per project</span>
-          <button class="add-btn" data-id="speed" data-name="Speed & SEO cleanup"><span>Add to cart</span></button>
-        </div>
-      </article>
-
-      <article class="product" data-cat="grow">
-        <div class="product-media">
-          <span class="product-tag tag-green">Grow</span>
-          <svg viewBox="0 0 200 130" class="ill" aria-hidden="true">
-            <circle cx="40" cy="65" r="16" class="s-green"/><circle cx="160" cy="34" r="14" class="s-cyan"/>
-            <circle cx="160" cy="96" r="14" class="s-cyan"/><circle cx="100" cy="65" r="12" class="s-dim"/>
-            <path d="M56 65h32M112 60c18-6 22-22 34-24M112 70c18 6 22 22 34 24" class="s-cyan flow"/>
-            <path d="M34 65l4 4 8-8" class="s-green"/>
-          </svg>
-        </div>
-        <div class="product-body">
-          <h3>Apps &amp; automation</h3>
-          <p>Your store connected to the tools you use, so your team stops doing the same thing by hand.</p>
-          <ul><li>Klaviyo &amp; abandoned cart emails</li><li>Shopify Flow automations</li><li>Inventory &amp; review app setup</li></ul>
-        </div>
-        <div class="product-foot">
-          <span class="price">Quoted per project</span>
-          <button class="add-btn" data-id="auto" data-name="Apps & automation"><span>Add to cart</span></button>
-        </div>
-      </article>
-
-      <article class="product" data-cat="fix">
-        <div class="product-media">
-          <span class="product-tag tag-pink">Fix</span>
-          <svg viewBox="0 0 200 130" class="ill" aria-hidden="true">
-            <rect x="20" y="24" width="72" height="82" rx="8" class="s-dim"/>
-            <path d="M56 46l18 32H38z" class="s-pink"/><path d="M56 58v8M56 71v1" class="s-pink"/>
-            <path d="M100 65h22" class="s-cyan flow"/><path d="M116 59l6 6-6 6" class="s-cyan"/>
-            <rect x="130" y="24" width="52" height="82" rx="8" class="s-green"/>
-            <circle cx="156" cy="62" r="14" class="s-green"/><path d="M149 62l5 5 9-10" class="s-green"/>
-          </svg>
-        </div>
-        <div class="product-body">
-          <h3>Fixes &amp; monthly support</h3>
-          <p>Something broke? Message me. Or keep me around for regular updates and sale prep.</p>
-          <ul><li>Urgent bug fixes</li><li>Ongoing monthly updates</li><li>Black Friday &amp; launch prep</li></ul>
-        </div>
-        <div class="product-foot">
-          <span class="price">Hourly or monthly</span>
-          <button class="add-btn" data-id="support" data-name="Fixes & monthly support"><span>Add to cart</span></button>
-        </div>
-      </article>
-    </div>
-
-    <!-- Quick add-ons -->
-    <div class="mt-16 p-6 md:p-8 rounded-2xl border border-white/10 bg-white/[0.02]">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-6">
-        <h3 class="text-white text-xl font-semibold">Quick fixes <span class="text-slate-500 font-normal text-base">· small jobs, add as many as you like</span></h3>
-      </div>
-      <div class="flex flex-wrap gap-3">
-        <button class="chip" data-id="q-landing" data-name="Landing page for a launch">Landing page for a launch</button>
-        <button class="chip" data-id="q-checkout" data-name="Broken cart or checkout">Broken cart or checkout</button>
-        <button class="chip" data-id="q-mobile" data-name="Mobile layout fixes">Mobile layout fixes</button>
-        <button class="chip" data-id="q-upload" data-name="Bulk product uploads">Bulk product uploads</button>
-        <button class="chip" data-id="q-filters" data-name="Collection filters">Collection filters</button>
-        <button class="chip" data-id="q-bf" data-name="Black Friday prep">Black Friday prep</button>
-        <button class="chip" data-id="q-apps" data-name="Removing slow apps">Removing slow apps</button>
-        <button class="chip" data-id="q-currency" data-name="Selling in other currencies">Selling in other currencies</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Order Status / Process -->
-<section id="process" class="py-28 px-6 border-t border-white/5">
-  <div class="max-w-6xl mx-auto">
-    <div class="max-w-2xl mb-14">
-      <h2 class="text-4xl md:text-5xl font-bold text-white font-display tracking-tight mb-4">What happens after<br>you check out</h2>
-      <p class="text-slate-400 text-lg">Same as tracking a Shopify order. You always know where your project is.</p>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
-      <!-- Timeline -->
-      <div class="lg:col-span-3 rounded-2xl border border-white/10 bg-[#070a10] p-6 md:p-8">
-        <div class="flex items-center gap-4 pb-6 mb-6 border-b border-white/10">
-          <div class="w-12 h-12 rounded-full border-2 border-green-500 flex items-center justify-center shrink-0">
-            <i data-lucide="check" class="w-6 h-6 text-green-400"></i>
-          </div>
-          <div>
-            <p class="text-xs font-mono text-slate-500">Request #BLUE-0042</p>
-            <p class="text-white text-xl font-semibold">Thanks, your request is in!</p>
-          </div>
-        </div>
-        <ol class="timeline" id="timeline">
-          <li><span class="dot"></span><div><h4>Request received</h4><p>You send what you need and a link to your store.</p></div></li>
-          <li><span class="dot"></span><div><h4>I look at your store</h4><p>I go through the theme, apps and the problem you described.</p></div></li>
-          <li><span class="dot"></span><div><h4>You get a plan and a price</h4><p>What I'll do, how long it takes and what it costs. Nothing starts until you say yes.</p></div></li>
-          <li><span class="dot"></span><div><h4>I build on a copy of your theme</h4><p>Your live store keeps selling. You get updates and a preview link along the way.</p></div></li>
-          <li><span class="dot"></span><div><h4>Live, and I'm still around</h4><p>We publish together, I show your team how to manage it, and I'm here if anything comes up.</p></div></li>
-        </ol>
-      </div>
-
-      <!-- Summary -->
-      <div class="lg:col-span-2 rounded-2xl border border-white/10 bg-[#070a10] p-6 md:p-8 flex flex-col">
-        <p class="text-white font-semibold mb-6">Included with every order</p>
-        <div class="space-y-4 text-sm flex-1">
-          <div class="summary-row"><span>Clear scope before work starts</span><span>Included</span></div>
-          <div class="summary-row"><span>Price agreed upfront</span><span>Included</span></div>
-          <div class="summary-row"><span>Work done off your live store</span><span>Included</span></div>
-          <div class="summary-row"><span>Progress updates</span><span>Included</span></div>
-          <div class="summary-row"><span>Handover so your team can edit</span><span>Included</span></div>
-          <div class="summary-row"><span>Help after launch</span><span>Included</span></div>
-        </div>
-        <div class="flex justify-between items-baseline pt-6 mt-6 border-t border-white/10">
-          <span class="text-slate-400">Surprises</span>
-          <span class="text-2xl font-display font-bold text-white">0</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- Shopify Projects -->
-  <section id="work" class="py-32 relative overflow-hidden">
-  <div class="max-w-7xl mx-auto px-6 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<header class="hero">
+  <div class="wrap">
     <div>
-      <div class="flex items-center gap-3 mb-4">
-        <span class="w-12 h-[1px] bg-green-500"></span>
-        <span class="text-green-500 font-mono text-sm uppercase tracking-widest">Recent work</span>
+      <div class="avail"><i></i> Friedaze, a.k.a. Blue · Shopify developer · GMT+9</div>
+      <h1>I build the parts of your store that make people <span class="hl"><em>buy.</em></span></h1>
+      <p class="lead">Product pages, variant pickers, full Shopify builds, and the fixes nobody else got around to. Scroll down and see the stores for yourself.</p>
+      <div class="cta">
+        <a href="#work" class="btn btn-ink">See the work ↓</a>
+        <a href="#contact" class="btn btn-line">Email me</a>
       </div>
-      <h2 class="text-4xl md:text-6xl font-semibold text-white tracking-tighter neon-blue mb-2">
-        STORES I'VE <br> WORKED ON
-      </h2>
-      <p class="text-slate-500">Click any store to see it live.</p>
     </div>
-    <div class="flex gap-2">
-      <button id="shopPrevBtn" class="p-3 rounded-full border border-white/10 hover:bg-white/10 transition text-white active:scale-90">
-        <i data-lucide="arrow-left" class="w-5 h-5"></i>
-      </button>
-      <button id="shopNextBtn" class="p-3 rounded-full border border-white/10 hover:bg-white/10 transition text-white active:scale-90">
-        <i data-lucide="arrow-right" class="w-5 h-5"></i>
-      </button>
+    <div class="collage" aria-hidden="true">
+      <div class="frame h1"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">beautybritain.uk</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://beautybritain.uk/?w=1200" alt="Screenshot of beautybritain.uk" loading="lazy"></div></div>
+      <div class="frame h2"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">aussie-pet.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://www.aussie-pet.com/?w=1200" alt="Screenshot of aussie-pet.com" loading="lazy"></div></div>
+      <div class="frame h3"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">jlindeberg.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://www.jlindeberg.com/?w=1200" alt="Screenshot of jlindeberg.com" loading="lazy"></div></div>
+      <div class="sticker"><div><b>32</b>stores &amp; sites</div></div>
     </div>
   </div>
+  <div class="stats">
+    <div class="wrap">
+      <div class="stat"><b>100%</b><span>Job success on Upwork</span></div>
+      <div class="stat"><b>50+</b><span>Projects shipped</span></div>
+      <div class="stat"><b>3 yrs</b><span>Working on Shopify</span></div>
+      <div class="stat"><b>$2M+</b><span>Client revenue</span></div>
+    </div>
+  </div>
+</header>
 
-  <div id="shopifyContainer" class="w-full overflow-x-auto no-scrollbar scroll-smooth pl-6 md:pl-[max(2rem,calc((100vw-80rem)/2))]">
-    <div class="flex gap-8 w-max snap-x snap-mandatory pb-12">
-<!-- NEW ADDED SHOPIFY WEBSITES -->
-      <a href="https://www.aussie-pet.com/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://www.aussie-pet.com/?w=1920" alt="Aussie Pet store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Aussie Pet</h3>
-            <p class="text-sm text-slate-400">Variant design &amp; more · Pet · Australia</p>
-          </div>
-        </div>
+<div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Beauty Britain</span> <span>Aussie Pet</span> <span>Polska Uroda</span> <span>Svenska Beauty</span> <span>Beauty Kiwi</span> <span>Beauty Australia</span> <span>Paw-Friend</span> <span>Kiwiwags</span> <span>Palsglad</span> <span>Zoologiczny Plus</span> <span>British Pets</span> <span>Tierbedarf Pro</span> <span>Tierbedarf Schweiz</span> <span>EZ Dupe</span> <span>Acumen Disc</span> <span>Mi Pequeñito</span> <span>Onze Wondertjes</span> <span>J.Lindeberg</span> <span>Alo Yoga</span> <span>Brooklinen</span> <span>Ultra Game Shop</span> <span>Woodpanel PH</span> <span>Onesimus</span> <span>Titan 22</span> <span>Hunt Country Furniture</span> <span>Fitgeno</span> <span>Nummyblend</span> <span>Dragoon Gaming</span> <span>Smith &amp; Associates</span> <span>MetroLoft</span> <span>Debra Smalley</span> <span>Akoya Boca West</span> <span>Beauty Britain</span> <span>Aussie Pet</span> <span>Polska Uroda</span> <span>Svenska Beauty</span> <span>Beauty Kiwi</span> <span>Beauty Australia</span> <span>Paw-Friend</span> <span>Kiwiwags</span> <span>Palsglad</span> <span>Zoologiczny Plus</span> <span>British Pets</span> <span>Tierbedarf Pro</span> <span>Tierbedarf Schweiz</span> <span>EZ Dupe</span> <span>Acumen Disc</span> <span>Mi Pequeñito</span> <span>Onze Wondertjes</span> <span>J.Lindeberg</span> <span>Alo Yoga</span> <span>Brooklinen</span> <span>Ultra Game Shop</span> <span>Woodpanel PH</span> <span>Onesimus</span> <span>Titan 22</span> <span>Hunt Country Furniture</span> <span>Fitgeno</span> <span>Nummyblend</span> <span>Dragoon Gaming</span> <span>Smith &amp; Associates</span> <span>MetroLoft</span> <span>Debra Smalley</span> <span>Akoya Boca West</span></div></div>
+
+<section id="work">
+  <div class="wrap">
+    <div class="head rv">
+      <h2>The <em>work.</em></h2>
+      <p>Real stores, live right now. Hover a screenshot to scroll it, click to open the store.</p>
+    </div>
+    <div class="filters rv" role="group" aria-label="Filter work">
+      <button class="on" data-f="all">Everything<sup>32</sup></button>
+      <button data-f="product">Product pages<sup>5</sup></button>
+      <button data-f="variant">Variant design<sup>8</sup></button>
+      <button data-f="store">Store work<sup>15</sup></button>
+      <button data-f="web">Websites<sup>4</sup></button>
+    </div>
+    <div class="grid" id="grid">
+      <a class="card" data-type="product" href="https://beautybritain.uk/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">beautybritain.uk</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://beautybritain.uk/?w=1200" alt="Screenshot of beautybritain.uk" loading="lazy"></div></div>
+        <div class="meta"><h3>Beauty Britain</h3><span class="tag tag-product">Product page</span></div>
+        <p class="sector">Beauty · UK</p>
       </a>
-
-      <a href="https://us.ezdupe.com/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://us.ezdupe.com/?w=1920" alt="EZ Dupe store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">EZ Dupe</h3>
-            <p class="text-sm text-slate-400">Online Store · USA</p>
-          </div>
-        </div>
+      <a class="card" data-type="variant" href="https://www.aussie-pet.com/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">aussie-pet.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://www.aussie-pet.com/?w=1200" alt="Screenshot of aussie-pet.com" loading="lazy"></div></div>
+        <div class="meta"><h3>Aussie Pet</h3><span class="tag tag-variant">Variant design</span></div>
+        <p class="sector">Pet supplies · Australia</p>
       </a>
-
-      <a href="https://acumendisc.com/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://acumendisc.com/?w=1920" alt="Acumen Disc store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Acumen Disc</h3>
-            <p class="text-sm text-slate-400">Online Store</p>
-          </div>
-        </div>
+      <a class="card" data-type="product" href="https://polska-uroda.pl/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">polska-uroda.pl</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://polska-uroda.pl/?w=1200" alt="Screenshot of polska-uroda.pl" loading="lazy"></div></div>
+        <div class="meta"><h3>Polska Uroda</h3><span class="tag tag-product">Product page</span></div>
+        <p class="sector">Beauty · Poland</p>
       </a>
-
-      <a href="https://beautybritain.uk/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://beautybritain.uk/?w=1920" alt="Beauty Britain store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Beauty Britain</h3>
-            <p class="text-sm text-slate-400">Product page design · Beauty · UK</p>
-          </div>
-        </div>
+      <a class="card" data-type="product" href="https://svenskabeauty.se/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">svenskabeauty.se</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://svenskabeauty.se/?w=1200" alt="Screenshot of svenskabeauty.se" loading="lazy"></div></div>
+        <div class="meta"><h3>Svenska Beauty</h3><span class="tag tag-product">Product page</span></div>
+        <p class="sector">Beauty · Sweden</p>
       </a>
-
-      <a href="https://polska-uroda.pl/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://polska-uroda.pl/?w=1920" alt="Polska Uroda store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Polska Uroda</h3>
-            <p class="text-sm text-slate-400">Product page design · Beauty · Poland</p>
-          </div>
-        </div>
+      <a class="card" data-type="product" href="https://beautykiwi.nz/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">beautykiwi.nz</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://beautykiwi.nz/?w=1200" alt="Screenshot of beautykiwi.nz" loading="lazy"></div></div>
+        <div class="meta"><h3>Beauty Kiwi</h3><span class="tag tag-product">Product page</span></div>
+        <p class="sector">Beauty · New Zealand</p>
       </a>
-
-      <a href="https://mipequenito.mx/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://mipequenito.mx/?w=1920" alt="Mi Pequeñito store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Mi Pequeñito</h3>
-            <p class="text-sm text-slate-400">Online Store · Mexico</p>
-          </div>
-        </div>
+      <a class="card" data-type="product" href="https://beauty-australia.com/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">beauty-australia.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://beauty-australia.com/?w=1200" alt="Screenshot of beauty-australia.com" loading="lazy"></div></div>
+        <div class="meta"><h3>Beauty Australia</h3><span class="tag tag-product">Product page</span></div>
+        <p class="sector">Beauty · Australia</p>
       </a>
-
-      <a href="https://onzewondertjes.nl/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://onzewondertjes.nl/?w=1920" alt="Onze Wondertjes store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Onze Wondertjes</h3>
-            <p class="text-sm text-slate-400">Online Store · Netherlands</p>
-          </div>
-        </div>
+      <a class="card" data-type="variant" href="https://paw-friend.com/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">paw-friend.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://paw-friend.com/?w=1200" alt="Screenshot of paw-friend.com" loading="lazy"></div></div>
+        <div class="meta"><h3>Paw-Friend</h3><span class="tag tag-variant">Variant design</span></div>
+        <p class="sector">Pet supplies</p>
       </a>
-
-      <a href="https://svenskabeauty.se/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://svenskabeauty.se/?w=1920" alt="Svenska Beauty store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Svenska Beauty</h3>
-            <p class="text-sm text-slate-400">Product page design · Beauty · Sweden</p>
-          </div>
-        </div>
+      <a class="card" data-type="variant" href="https://kiwiwags.nz/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">kiwiwags.nz</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://kiwiwags.nz/?w=1200" alt="Screenshot of kiwiwags.nz" loading="lazy"></div></div>
+        <div class="meta"><h3>Kiwiwags</h3><span class="tag tag-variant">Variant design</span></div>
+        <p class="sector">Pet supplies · New Zealand</p>
       </a>
-
-      <a href="https://beautykiwi.nz/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://beautykiwi.nz/?w=1920" alt="Beauty Kiwi store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Beauty Kiwi</h3>
-            <p class="text-sm text-slate-400">Product page design · Beauty · New Zealand</p>
-          </div>
-        </div>
+      <a class="card" data-type="variant" href="https://palsglad.se/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">palsglad.se</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://palsglad.se/?w=1200" alt="Screenshot of palsglad.se" loading="lazy"></div></div>
+        <div class="meta"><h3>Palsglad</h3><span class="tag tag-variant">Variant design</span></div>
+        <p class="sector">Pet supplies · Sweden</p>
       </a>
-
-      <a href="https://beauty-australia.com/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://beauty-australia.com/?w=1920" alt="Beauty Australia store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Beauty Australia</h3>
-            <p class="text-sm text-slate-400">Product page design · Beauty · Australia</p>
-          </div>
-        </div>
+      <a class="card" data-type="variant" href="https://zoologiczny-plus.pl/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">zoologiczny-plus.pl</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://zoologiczny-plus.pl/?w=1200" alt="Screenshot of zoologiczny-plus.pl" loading="lazy"></div></div>
+        <div class="meta"><h3>Zoologiczny Plus</h3><span class="tag tag-variant">Variant design</span></div>
+        <p class="sector">Pet supplies · Poland</p>
       </a>
-
-      <a href="https://paw-friend.com/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://paw-friend.com/?w=1920" alt="Paw-Friend store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Paw-Friend</h3>
-            <p class="text-sm text-slate-400">Variant design &amp; more · Pet</p>
-          </div>
-        </div>
+      <a class="card" data-type="variant" href="https://britishpets.uk/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">britishpets.uk</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://britishpets.uk/?w=1200" alt="Screenshot of britishpets.uk" loading="lazy"></div></div>
+        <div class="meta"><h3>British Pets</h3><span class="tag tag-variant">Variant design</span></div>
+        <p class="sector">Pet supplies · UK</p>
       </a>
-
-      <a href="https://kiwiwags.nz/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://kiwiwags.nz/?w=1920" alt="Kiwiwags store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Kiwiwags</h3>
-            <p class="text-sm text-slate-400">Variant design &amp; more · Pet · New Zealand</p>
-          </div>
-        </div>
+      <a class="card" data-type="variant" href="https://tierbedarf-pro.de/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">tierbedarf-pro.de</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://tierbedarf-pro.de/?w=1200" alt="Screenshot of tierbedarf-pro.de" loading="lazy"></div></div>
+        <div class="meta"><h3>Tierbedarf Pro</h3><span class="tag tag-variant">Variant design</span></div>
+        <p class="sector">Pet supplies · Germany</p>
       </a>
-
-      <a href="https://palsglad.se/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://palsglad.se/?w=1920" alt="Palsglad store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Palsglad</h3>
-            <p class="text-sm text-slate-400">Variant design &amp; more · Pet · Sweden</p>
-          </div>
-        </div>
+      <a class="card" data-type="variant" href="https://tierbedarfschweiz.ch/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">tierbedarfschweiz.ch</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://tierbedarfschweiz.ch/?w=1200" alt="Screenshot of tierbedarfschweiz.ch" loading="lazy"></div></div>
+        <div class="meta"><h3>Tierbedarf Schweiz</h3><span class="tag tag-variant">Variant design</span></div>
+        <p class="sector">Pet supplies · Switzerland</p>
       </a>
-
-      <a href="https://zoologiczny-plus.pl/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://zoologiczny-plus.pl/?w=1920" alt="Zoologiczny Plus store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Zoologiczny Plus</h3>
-            <p class="text-sm text-slate-400">Variant design &amp; more · Pet · Poland</p>
-          </div>
-        </div>
+      <a class="card" data-type="store" href="https://us.ezdupe.com/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">us.ezdupe.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://us.ezdupe.com/?w=1200" alt="Screenshot of us.ezdupe.com" loading="lazy"></div></div>
+        <div class="meta"><h3>EZ Dupe</h3><span class="tag tag-store">Store work</span></div>
+        <p class="sector">USA</p>
       </a>
-
-      <a href="https://britishpets.uk/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://britishpets.uk/?w=1920" alt="British Pets store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">British Pets</h3>
-            <p class="text-sm text-slate-400">Variant design &amp; more · Pet · UK</p>
-          </div>
-        </div>
+      <a class="card" data-type="store" href="https://acumendisc.com/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">acumendisc.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://acumendisc.com/?w=1200" alt="Screenshot of acumendisc.com" loading="lazy"></div></div>
+        <div class="meta"><h3>Acumen Disc</h3><span class="tag tag-store">Store work</span></div>
+        <p class="sector">Online store</p>
       </a>
-
-      <a href="https://tierbedarf-pro.de/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://tierbedarf-pro.de/?w=1920" alt="Tierbedarf Pro store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Tierbedarf Pro</h3>
-            <p class="text-sm text-slate-400">Variant design &amp; more · Pet · Germany</p>
-          </div>
-        </div>
+      <a class="card" data-type="store" href="https://mipequenito.mx/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">mipequenito.mx</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://mipequenito.mx/?w=1200" alt="Screenshot of mipequenito.mx" loading="lazy"></div></div>
+        <div class="meta"><h3>Mi Pequeñito</h3><span class="tag tag-store">Store work</span></div>
+        <p class="sector">Mexico</p>
       </a>
-
-      <a href="https://tierbedarfschweiz.ch/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://tierbedarfschweiz.ch/?w=1920" alt="Tierbedarf Schweiz store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Tierbedarf Schweiz</h3>
-            <p class="text-sm text-slate-400">Variant design &amp; more · Pet · Switzerland</p>
-          </div>
-        </div>
+      <a class="card" data-type="store" href="https://onzewondertjes.nl/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">onzewondertjes.nl</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://onzewondertjes.nl/?w=1200" alt="Screenshot of onzewondertjes.nl" loading="lazy"></div></div>
+        <div class="meta"><h3>Onze Wondertjes</h3><span class="tag tag-store">Store work</span></div>
+        <p class="sector">Netherlands</p>
       </a>
-
-
-      <a href="https://ultragameshop.com/" target="_blank" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://ultragameshop.com/?w=1920" class="absolute w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Ultra Game Shop</h3>
-            <p class="text-sm text-slate-400">Gaming & Electronics</p>
-          </div>
-        </div>
+      <a class="card" data-type="store" href="https://www.jlindeberg.com/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">jlindeberg.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://www.jlindeberg.com/?w=1200" alt="Screenshot of jlindeberg.com" loading="lazy"></div></div>
+        <div class="meta"><h3>J.Lindeberg</h3><span class="tag tag-store">Store work</span></div>
+        <p class="sector">Fashion</p>
       </a>
-
-      <a href="https://www.jlindeberg.com/" target="_blank" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://www.jlindeberg.com/?w=1920" class="absolute w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">J.Lindeberg</h3>
-            <p class="text-sm text-slate-400">Luxury Fashion Brand</p>
-          </div>
-        </div>
+      <a class="card" data-type="store" href="https://www.aloyoga.com/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">aloyoga.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://www.aloyoga.com/?w=1200" alt="Screenshot of aloyoga.com" loading="lazy"></div></div>
+        <div class="meta"><h3>Alo Yoga</h3><span class="tag tag-store">Store work</span></div>
+        <p class="sector">Athleisure</p>
       </a>
-
-    
-
-      <a href="https://www.brooklinen.com/pages/new-comforters-pillows" target="_blank" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://www.brooklinen.com/pages/new-comforters-pillows?w=1920" class="absolute w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Brooklinen</h3>
-            <p class="text-sm text-slate-400">Bedding & Home Comfort</p>
-          </div>
-        </div>
+      <a class="card" data-type="store" href="https://www.brooklinen.com/pages/new-comforters-pillows" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">brooklinen.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://www.brooklinen.com/pages/new-comforters-pillows?w=1200" alt="Screenshot of brooklinen.com" loading="lazy"></div></div>
+        <div class="meta"><h3>Brooklinen</h3><span class="tag tag-store">Store work</span></div>
+        <p class="sector">Bedding · landing page</p>
       </a>
-
-      <a href="https://www.aloyoga.com/" target="_blank" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://www.aloyoga.com/?w=1920" class="absolute w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Alo Yoga</h3>
-            <p class="text-sm text-slate-400">Athleisure Fashion</p>
-          </div>
-        </div>
+      <a class="card" data-type="store" href="https://ultragameshop.com/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">ultragameshop.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://ultragameshop.com/?w=1200" alt="Screenshot of ultragameshop.com" loading="lazy"></div></div>
+        <div class="meta"><h3>Ultra Game Shop</h3><span class="tag tag-store">Store work</span></div>
+        <p class="sector">Gaming &amp; electronics</p>
       </a>
-
-      <a href="https://www.smithandassociates.com/" target="_blank" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://www.smithandassociates.com/?w=1920" class="absolute w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Smith & Associates</h3>
-            <p class="text-sm text-slate-400">Real Estate Firm</p>
-          </div>
-        </div>
+      <a class="card" data-type="store" href="https://woodpanel.ph/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">woodpanel.ph</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://woodpanel.ph/?w=1200" alt="Screenshot of woodpanel.ph" loading="lazy"></div></div>
+        <div class="meta"><h3>Woodpanel PH</h3><span class="tag tag-store">Store work</span></div>
+        <p class="sector">Home improvement · Shopify Plus</p>
       </a>
-
-      <a href="https://metroloft.com/" target="_blank" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://metroloft.com/?w=1920" class="absolute w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">MetroLoft</h3>
-            <p class="text-sm text-slate-400">Luxury NYC Rentals</p>
-          </div>
-        </div>
+      <a class="card" data-type="store" href="https://onesimus.com.ph/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">onesimus.com.ph</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://onesimus.com.ph/?w=1200" alt="Screenshot of onesimus.com.ph" loading="lazy"></div></div>
+        <div class="meta"><h3>Onesimus</h3><span class="tag tag-store">Store work</span></div>
+        <p class="sector">Men's fashion</p>
       </a>
-
-      <a href="https://debrasmalley.com/" target="_blank" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://debrasmalley.com/?w=1920" class="absolute w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Debra Smalley</h3>
-            <p class="text-sm text-slate-400">Professional Services</p>
-          </div>
-        </div>
+      <a class="card" data-type="store" href="https://titan22.com/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">titan22.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://titan22.com/?w=1200" alt="Screenshot of titan22.com" loading="lazy"></div></div>
+        <div class="meta"><h3>Titan 22</h3><span class="tag tag-store">Store work</span></div>
+        <p class="sector">Basketball</p>
       </a>
-
-      <a href="https://akoyabocawest.com/" target="_blank" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://akoyabocawest.com/?w=1920" class="absolute w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-          <div class="absolute bottom-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Akoya Boca West</h3>
-            <p class="text-sm text-slate-400">Luxury Real Estate</p>
-          </div>
-        </div>
+      <a class="card" data-type="store" href="https://www.huntcountryfurniture.com/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">huntcountryfurniture.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://www.huntcountryfurniture.com/?w=1200" alt="Screenshot of huntcountryfurniture.com" loading="lazy"></div></div>
+        <div class="meta"><h3>Hunt Country Furniture</h3><span class="tag tag-store">Store work</span></div>
+        <p class="sector">Furniture</p>
       </a>
-
-
-      <a href="https://woodpanel.ph/" target="_blank" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-[#0a0a0a] border border-white/10 group-hover:border-green-500/50 transition-all duration-500 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://woodpanel.ph/?w=1920" alt="Woodpanel" class="absolute inset-0 w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000">
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500"></div>
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/90 to-transparent">
-            <span class="px-2 py-1 text-[10px] bg-green-500/10 text-green-400 border border-green-500/20 rounded mb-3 inline-block uppercase tracking-widest">Shopify Plus</span>
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400 transition-colors">Woodpanel PH</h3>
-            <p class="text-sm text-slate-400">Home Improvement & Interior Hardware</p>
-          </div>
-        </div>
+      <a class="card" data-type="store" href="https://fitgeno.com/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">fitgeno.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://fitgeno.com/?w=1200" alt="Screenshot of fitgeno.com" loading="lazy"></div></div>
+        <div class="meta"><h3>Fitgeno</h3><span class="tag tag-store">Store work</span></div>
+        <p class="sector">Health &amp; wellness</p>
       </a>
-
-      <a href="https://onesimus.com.ph/" target="_blank" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-[#0a0a0a] border border-white/10 group-hover:border-green-500/50 transition-all duration-500 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://onesimus.com.ph/?w=1920" alt="Onesimus" class="absolute inset-0 w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000">
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500"></div>
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/90 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400 transition-colors">Onesimus</h3>
-            <p class="text-sm text-slate-400">Premium Men's Fashion & Suits</p>
-          </div>
-        </div>
+      <a class="card" data-type="store" href="https://nummyblend.com/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">nummyblend.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://nummyblend.com/?w=1200" alt="Screenshot of nummyblend.com" loading="lazy"></div></div>
+        <div class="meta"><h3>Nummyblend</h3><span class="tag tag-store">Store work</span></div>
+        <p class="sector">Kitchen appliances</p>
       </a>
-
-      <a href="https://titan22.com/" target="_blank" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-[#0a0a0a] border border-white/10 group-hover:border-green-500/50 transition-all duration-500 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://titan22.com/?w=1920" alt="Titan22" class="absolute inset-0 w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000">
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500"></div>
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/90 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400 transition-colors">Titan 22</h3>
-            <p class="text-sm text-slate-400">Premium Basketball Concept Store</p>
-          </div>
-        </div>
+      <a class="card" data-type="store" href="https://dragoongaming.co.uk/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">dragoongaming.co.uk</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://dragoongaming.co.uk/?w=1200" alt="Screenshot of dragoongaming.co.uk" loading="lazy"></div></div>
+        <div class="meta"><h3>Dragoon Gaming</h3><span class="tag tag-store">Store work</span></div>
+        <p class="sector">Gaming gear · UK</p>
       </a>
-
-   
-      <a href="https://www.huntcountryfurniture.com/" target="_blank" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-[#0a0a0a] border border-white/10 group-hover:border-green-500/50 transition-all duration-500 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://www.huntcountryfurniture.com/?w=1920" alt="Hunt Country" class="absolute inset-0 w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000">
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500"></div>
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/90 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400 transition-colors">Hunt Country Furniture</h3>
-            <p class="text-sm text-slate-400">American Crafted Furniture</p>
-          </div>
-        </div>
+      <a class="card" data-type="web" href="https://www.smithandassociates.com/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">smithandassociates.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://www.smithandassociates.com/?w=1200" alt="Screenshot of smithandassociates.com" loading="lazy"></div></div>
+        <div class="meta"><h3>Smith &amp; Associates</h3><span class="tag tag-web">Website</span></div>
+        <p class="sector">Real estate</p>
       </a>
-
-  
-
-      <a href="https://fitgeno.com/" target="_blank" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-[#0a0a0a] border border-white/10 group-hover:border-green-500/50 transition-all duration-500 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://fitgeno.com/?w=1920" alt="Fitgeno" class="absolute inset-0 w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000">
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500"></div>
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/90 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400 transition-colors">Fitgeno</h3>
-            <p class="text-sm text-slate-400">Health & Wellness Accessories</p>
-          </div>
-        </div>
+      <a class="card" data-type="web" href="https://metroloft.com/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">metroloft.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://metroloft.com/?w=1200" alt="Screenshot of metroloft.com" loading="lazy"></div></div>
+        <div class="meta"><h3>MetroLoft</h3><span class="tag tag-web">Website</span></div>
+        <p class="sector">NYC rentals</p>
       </a>
-
-      <a href="https://nummyblend.com/" target="_blank" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-[#0a0a0a] border border-white/10 group-hover:border-green-500/50 transition-all duration-500 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://nummyblend.com/?w=1920" alt="Nummyblend" class="absolute inset-0 w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000">
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500"></div>
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/90 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400 transition-colors">Nummyblend</h3>
-            <p class="text-sm text-slate-400">Kitchen Innovation & Appliances</p>
-          </div>
-        </div>
+      <a class="card" data-type="web" href="https://debrasmalley.com/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">debrasmalley.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://debrasmalley.com/?w=1200" alt="Screenshot of debrasmalley.com" loading="lazy"></div></div>
+        <div class="meta"><h3>Debra Smalley</h3><span class="tag tag-web">Website</span></div>
+        <p class="sector">Professional services</p>
       </a>
-
-      <a href="https://dragoongaming.co.uk/" target="_blank" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
-        <div class="absolute inset-0 bg-[#0a0a0a] border border-white/10 group-hover:border-green-500/50 transition-all duration-500 overflow-hidden rounded-xl">
-          <img src="https://s.wordpress.com/mshots/v1/https://dragoongaming.co.uk/?w=1920" alt="Dragoon Gaming" class="absolute inset-0 w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000">
-          <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500"></div>
-          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/90 to-transparent">
-            <h3 class="text-2xl text-white font-bold group-hover:text-green-400 transition-colors">Dragoon Gaming</h3>
-            <p class="text-sm text-slate-400">Gaming Gear & UK Distribution</p>
-          </div>
-        </div>
+      <a class="card" data-type="web" href="https://akoyabocawest.com/" target="_blank" rel="noopener noreferrer">
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">akoyabocawest.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://akoyabocawest.com/?w=1200" alt="Screenshot of akoyabocawest.com" loading="lazy"></div></div>
+        <div class="meta"><h3>Akoya Boca West</h3><span class="tag tag-web">Website</span></div>
+        <p class="sector">Real estate</p>
       </a>
+    </div>
+    <div class="more"><button class="btn btn-line" id="moreBtn" style="cursor:pointer;background:none;font-family:inherit">Show all stores</button></div>
+  </div>
+</section>
 
+<section id="services" class="services">
+  <div class="wrap">
+    <div class="head rv">
+      <h2>What you can <em>hand me.</em></h2>
+      <p>You don't need to know the technical side. Tell me what's not working, and I'll take it from there.</p>
+    </div>
+    <div class="svc rv"><span class="n">01</span><h3>Product pages</h3><p>Pages that answer questions before customers ask them: photos, ingredients, sizes, reviews and shipping, right where people look. <strong>I built these for a group of beauty stores across the UK, Poland, Sweden, New Zealand and Australia.</strong></p></div>
+    <div class="svc rv"><span class="n">02</span><h3>Variants &amp; options</h3><p>Colour swatches, size pickers and bundles, the parts that get confusing fast when one product comes in twelve versions. <strong>I designed these for eight pet stores in Europe, the UK and Oceania.</strong></p></div>
+    <div class="svc rv"><span class="n">03</span><h3>Full store builds</h3><p>New stores, redesigns, and moves from WooCommerce or Wix, set up so your team can edit everything themselves afterwards.</p></div>
+    <div class="svc rv"><span class="n">04</span><h3>Fixes &amp; speed</h3><p>Slow pages, broken carts, apps fighting each other, mobile layouts that fall apart. The small stuff that quietly costs you sales.</p></div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="head rv">
+      <h2>How it <em>goes.</em></h2>
+      <p>No long calls or confusing proposals. Just four steps.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv"><h3>Send me your store</h3><p>A link and a few lines on what you want changed or what's broken.</p></div>
+      <div class="step rv"><h3>Get a plan and a price</h3><p>What I'll do, how long it takes, what it costs. Nothing starts until you say yes.</p></div>
+      <div class="step rv"><h3>I work on a copy</h3><p>Your live store keeps selling while I build. You get a preview link to check along the way.</p></div>
+      <div class="step rv"><h3>We go live</h3><p>We publish together, I show your team how to edit it, and I'm around if anything comes up.</p></div>
     </div>
   </div>
 </section>
 
-<script>
-  const shopContainer = document.getElementById('shopifyContainer');
-  const shopNextBtn = document.getElementById('shopNextBtn');
-  const shopPrevBtn = document.getElementById('shopPrevBtn');
-  const shopScrollAmount = 600; 
-
-  shopNextBtn.addEventListener('click', () => {
-    shopContainer.scrollBy({ left: shopScrollAmount, behavior: 'smooth' });
-  });
-
-  shopPrevBtn.addEventListener('click', () => {
-    shopContainer.scrollBy({ left: -shopScrollAmount, behavior: 'smooth' });
-  });
-</script>
-
-
-<!-- Upwork Reviews (The Flex) -->
-        <section id="reviews" class="py-24 relative bg-black">
-            <div class="max-w-7xl mx-auto px-6 mb-12">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="w-12 h-[1px] bg-green-500"></span>
-                    <span class="text-green-500 font-mono text-sm uppercase tracking-widest">Client Feedback</span>
-                </div>
-                <h2 class="text-4xl md:text-6xl font-bold text-white font-display tracking-tight">
-                    Wall of <span class="text-gradient-green">Truth</span>
-                </h2>
-                <p class="mt-4 text-slate-400">Verified reviews from Upwork  &amp; Direct Clients.</p>
-            </div>
-
-            <!-- Review Scroller -->
-           <div class="w-full overflow-hidden px-6 review-wrapper">
-
-           <div class="flex gap-6 w-max pb-8 review-track">
-
-                    
-                    <!-- Review Card 1 -->
-                    <div class="w-[350px] md:w-[450px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 hover:border-green-500/30 transition-colors flex flex-col justify-between group">
-                        <div>
-                            <div class="flex gap-1 mb-6">
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                            </div>
-                            <p class="text-slate-300 italic leading-relaxed mb-6">
-                                "Friedaze (Blue) is hands down the best developer I've hired on Upwork. He completely rebuilt our Shopify theme, improved our SEO score from 45 to 98, and fixed bugs other devs couldn't touch. Highly recommended."
-                            </p>
-                        </div>
-                        <div class="flex items-center gap-4 pt-6 border-t border-white/5">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center font-bold text-white">JD</div>
-                            <div>
-                                <h4 class="text-white text-sm font-semibold">Jason D.</h4>
-                                <p class="text-xs text-slate-500">E-commerce Founder (USA)</p>
-                            </div>
-                            <div class="ml-auto">
-                                <i data-lucide="badge-check" class="w-6 h-6 text-green-500 opacity-50 group-hover:opacity-100 transition-opacity"></i>
-                            </div>
-                        </div>
-                    </div>
-                 <!-- Review Card 2 -->
-                    <div class="w-[350px] md:w-[450px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 hover:border-green-500/30 transition-colors flex flex-col justify-between group">
-                        <div>
-                            <div class="flex gap-1 mb-6">
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                            </div>
-                            <p class="text-slate-300 italic leading-relaxed mb-6">
-                                "We hired this developer through OLJ and were genuinely impressed by the results. Communication was smooth, deadlines were met, and the quality of work exceeded expectations. From performance improvements to technical fixes, everything was handled professionally and efficiently. We’d have no hesitation working with him again and highly recommend his services."
-                            </p>
-                        </div>
-                        <div class="flex items-center gap-4 pt-6 border-t border-white/5">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center font-bold text-white">OG</div>
-                            <div>
-                                <h4 class="text-white text-sm font-semibold">Oliver Grant</h4>
-                                <p class="text-xs text-slate-500">Vertex & Co.</p>
-                            </div>
-                            <div class="ml-auto">
-                                <i data-lucide="badge-check" class="w-6 h-6 text-green-500 opacity-50 group-hover:opacity-100 transition-opacity"></i>
-                            </div>
-                        </div>
-                    </div>
-                 <!-- Review Card 3 -->
-                    <div class="w-[350px] md:w-[450px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 hover:border-green-500/30 transition-colors flex flex-col justify-between group">
-                        <div>
-                            <div class="flex gap-1 mb-6">
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                            </div>
-                            <p class="text-slate-300 italic leading-relaxed mb-6">
-                                "After working with multiple freelancers, this was easily our best experience on OLJ. The work was clean, well-structured, and done with real attention to detail. Issues that had been ignored for months were finally resolved, and the overall quality of our site improved noticeably. Reliable, skilled, and easy to work with. We’d definitely hire again."
-                            </p>
-                        </div>
-                        <div class="flex items-center gap-4 pt-6 border-t border-white/5">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center font-bold text-white">EB</div>
-                            <div>
-                                <h4 class="text-white text-sm font-semibold">Ethan B.</h4>
-                                <p class="text-xs text-slate-500">Luminary Labs (JP)</p>
-                            </div>
-                            <div class="ml-auto">
-                                <i data-lucide="badge-check" class="w-6 h-6 text-green-500 opacity-50 group-hover:opacity-100 transition-opacity"></i>
-                            </div>
-                        </div>
-                    </div>
-                 <!-- Review Card 4 -->
-                    <div class="w-[350px] md:w-[450px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 hover:border-green-500/30 transition-colors flex flex-col justify-between group">
-                        <div>
-                            <div class="flex gap-1 mb-6">
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                            </div>
-                            <p class="text-slate-300 italic leading-relaxed mb-6">
-                                "What stood out most was the level of ownership taken over the project. Every task was handled thoughtfully, with clear communication and proactive suggestions that genuinely improved the final result. The work wasn’t just completed but was refined. A dependable developer who delivers quality you can actually see."
-                            </p>
-                        </div>
-                        <div class="flex items-center gap-4 pt-6 border-t border-white/5">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center font-bold text-white">ML</div>
-                            <div>
-                                <h4 class="text-white text-sm font-semibold">Marcus L.</h4>
-                                <p class="text-xs text-slate-500">Northwave Studio (OLJ)</p>
-                            </div>
-                            <div class="ml-auto">
-                                <i data-lucide="badge-check" class="w-6 h-6 text-green-500 opacity-50 group-hover:opacity-100 transition-opacity"></i>
-                            </div>
-                        </div>
-                    </div>
-                 <!-- Review Card 5 -->
-                    <div class="w-[350px] md:w-[450px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 hover:border-green-500/30 transition-colors flex flex-col justify-between group">
-                        <div>
-                            <div class="flex gap-1 mb-6">
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                            </div>
-                            <p class="text-slate-300 italic leading-relaxed mb-6">
-                                "Well done! Impressive work from start to finish. Everything was handled professionally, communication was clear, and the final result exceeded expectations. The improvements made were noticeable immediately and delivered exactly what we were looking for."
-                            </p>
-                        </div>
-                        <div class="flex items-center gap-4 pt-6 border-t border-white/5">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center font-bold text-white">AWC</div>
-                            <div>
-                                <h4 class="text-white text-sm font-semibold">Adelaide Window Cleaning.</h4>
-                                <p class="text-xs text-slate-500">Window cleaning (UK)</p>
-                            </div>
-                            <div class="ml-auto">
-                                <i data-lucide="badge-check" class="w-6 h-6 text-green-500 opacity-50 group-hover:opacity-100 transition-opacity"></i>
-                            </div>
-                        </div>
-                    </div>
-                 <!-- Review Card Victor H -->
-                    <div class="w-[350px] md:w-[450px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 hover:border-green-500/30 transition-colors flex flex-col justify-between group">
-                        <div>
-                            <div class="flex gap-1 mb-6">
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                            </div>
-                            <p class="text-slate-300 italic leading-relaxed mb-6">
-                                "Great experience in communication and managing expectations. The UGC Beehiiv website design was clean, well-structured, and matched what we discussed. Everything went smoothly from start to finish."
-                            </p>
-                        </div>
-                        <div class="flex items-center gap-4 pt-6 border-t border-white/5">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center font-bold text-white">VH</div>
-                            <div>
-                                <h4 class="text-white text-sm font-semibold">Victor H.</h4>
-                                <p class="text-xs text-slate-500">UGC Newsletter (SGT)</p>
-                            </div>
-                            <div class="ml-auto">
-                                <i data-lucide="badge-check" class="w-6 h-6 text-green-500 opacity-50 group-hover:opacity-100 transition-opacity"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Review Card 2 -->
-                    <div class="w-[350px] md:w-[450px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 hover:border-green-500/30 transition-colors flex flex-col justify-between group">
-                        <div>
-                            <div class="flex gap-1 mb-6">
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                            </div>
-                            <p class="text-slate-300 italic leading-relaxed mb-6">
-                                "Incredible communication and technical skill. Blue didn't just code the design; he improved the UX logic and made the WordPress backend editable for our marketing team. A true professional."
-                            </p>
-                        </div>
-                        <div class="flex items-center gap-4 pt-6 border-t border-white/5">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center font-bold text-white">AS</div>
-                            <div>
-                                <h4 class="text-white text-sm font-semibold">Amanda S.</h4>
-                                <p class="text-xs text-slate-500">Marketing Director (UK)</p>
-                            </div>
-                            <div class="ml-auto">
-                                <i data-lucide="badge-check" class="w-6 h-6 text-green-500 opacity-50 group-hover:opacity-100 transition-opacity"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Review Card 3 -->
-                    <div class="w-[350px] md:w-[450px] p-8 rounded-xl bg-[#0a0a0a] border border-white/5 hover:border-green-500/30 transition-colors flex flex-col justify-between group">
-                        <div>
-                            <div class="flex gap-1 mb-6">
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-green-500 fill-green-500"></i>
-                            </div>
-                            <p class="text-slate-300 italic leading-relaxed mb-6">
-                                "Fast, reliable, and expertly coded. The site speed increased by 300% after his optimization. Will definitely work with Friedaze again for our next project."
-                            </p>
-                        </div>
-                        <div class="flex items-center gap-4 pt-6 border-t border-white/5">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center font-bold text-white">MK</div>
-                            <div>
-                                <h4 class="text-white text-sm font-semibold">Mike K.</h4>
-                                <p class="text-xs text-slate-500">UGC Founder (Canada)</p>
-                            </div>
-                            <div class="ml-auto">
-                                <i data-lucide="badge-check" class="w-6 h-6 text-green-500 opacity-50 group-hover:opacity-100 transition-opacity"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-
-
-  
-
-<!-- CTA Section -->
-<section id="contact" class="py-24 px-6 relative border-t border-white/5">
-<div class="max-w-4xl mx-auto text-center relative z-10">
-<i data-lucide="message-circle" class="w-12 h-12 text-green-400 mx-auto mb-6"></i>
-<h2 class="text-5xl md:text-7xl font-bold text-white tracking-tight mb-8 font-display">
-Not sure what you need?
-</h2>
-<p class="text-slate-400 mb-10 text-xl font-light">
-Send me your store link and tell me what's bugging you. We'll figure out the rest together.
-</p>
-<div class="flex flex-col sm:flex-row justify-center gap-4">
-<a href="mailto:friedazebaliliworks@gmail.com"
-class="px-8 py-4 bg-white text-black font-bold rounded hover:bg-green-400 transition-all duration-300">
-Email Friedaze
-</a>
-<a href="https://www.upwork.com/freelancers/~018d5e38c5c45f46b4"
-target="_blank" rel="noopener noreferrer"
-class="px-8 py-4 border border-white/10 text-white font-bold rounded hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2">
-<i data-lucide="arrow-up-right" class="w-4 h-4 text-green-500"></i>
-Hire on Upwork
-</a>
-</div>
-
-</div>
-
-<!-- Floor Grid -->
-<div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-cyan-900/10 to-transparent pointer-events-none"></div>
+<section id="reviews" class="reviews">
+  <div class="wrap">
+    <div class="head rv">
+      <h2>From the <em>clients.</em></h2>
+      <p>Reviews from Upwork, OnlineJobs and direct clients.</p>
+    </div>
+    <div class="quotes">
+      <div class="quote rv"><div class="stars">★★★★★</div><blockquote>"Friedaze (Blue) is hands down the best developer I've hired on Upwork. He completely rebuilt our Shopify theme, improved our SEO score from 45 to 98, and fixed bugs other devs couldn't touch. Highly recommended."</blockquote><div class="who"><i>JD</i><div><b>Jason D.</b><span>E-commerce Founder (USA)</span></div></div></div>
+      <div class="quote rv"><div class="stars">★★★★★</div><blockquote>"We hired this developer through OLJ and were genuinely impressed by the results. Communication was smooth, deadlines were met, and the quality of work exceeded expectations. From performance improvements to technical fixes, everything was handled professionally and efficiently. We'd have no hesitation working with him again and highly recommend his services."</blockquote><div class="who"><i>OG</i><div><b>Oliver Grant</b><span>Vertex &amp; Co.</span></div></div></div>
+      <div class="quote rv"><div class="stars">★★★★★</div><blockquote>"After working with multiple freelancers, this was easily our best experience on OLJ. The work was clean, well-structured, and done with real attention to detail. Issues that had been ignored for months were finally resolved, and the overall quality of our site improved noticeably. Reliable, skilled, and easy to work with. We'd definitely hire again."</blockquote><div class="who"><i>EB</i><div><b>Ethan B.</b><span>Luminary Labs (JP)</span></div></div></div>
+      <div class="quote rv"><div class="stars">★★★★★</div><blockquote>"What stood out most was the level of ownership taken over the project. Every task was handled thoughtfully, with clear communication and proactive suggestions that genuinely improved the final result. The work wasn't just completed but was refined. A dependable developer who delivers quality you can actually see."</blockquote><div class="who"><i>ML</i><div><b>Marcus L.</b><span>Northwave Studio (OLJ)</span></div></div></div>
+      <div class="quote rv"><div class="stars">★★★★★</div><blockquote>"Well done! Impressive work from start to finish. Everything was handled professionally, communication was clear, and the final result exceeded expectations. The improvements made were noticeable immediately and delivered exactly what we were looking for."</blockquote><div class="who"><i>AW</i><div><b>Adelaide Window Cleaning</b><span>Window cleaning (UK)</span></div></div></div>
+      <div class="quote rv"><div class="stars">★★★★★</div><blockquote>"Great experience in communication and managing expectations. The UGC Beehiiv website design was clean, well-structured, and matched what we discussed. Everything went smoothly from start to finish."</blockquote><div class="who"><i>VH</i><div><b>Victor H.</b><span>UGC Newsletter (SGT)</span></div></div></div>
+      <div class="quote rv"><div class="stars">★★★★★</div><blockquote>"Incredible communication and technical skill. Blue didn't just code the design; he improved the UX logic and made the WordPress backend editable for our marketing team. A true professional."</blockquote><div class="who"><i>AS</i><div><b>Amanda S.</b><span>Marketing Director (UK)</span></div></div></div>
+      <div class="quote rv"><div class="stars">★★★★★</div><blockquote>"Fast, reliable, and expertly coded. The site speed increased by 300% after his optimization. Will definitely work with Friedaze again for our next project."</blockquote><div class="who"><i>MK</i><div><b>Mike K.</b><span>UGC Founder (Canada)</span></div></div></div>
+    </div>
+  </div>
 </section>
 
-</main>
+<section id="contact" class="contact">
+  <div class="wrap">
+    <p class="mono" style="margin-bottom:20px">Taking new projects</p>
+    <h2>Got a store that <em>needs work?</em></h2>
+    <p>Send me the link and tell me what's bugging you. I'll reply with what I'd do.</p>
+    <a class="mail" href="mailto:friedazebaliliworks@gmail.com?subject=Shopify%20project">friedazebaliliworks@gmail.com</a>
+    <div class="cta" style="justify-content:center">
+      <a href="mailto:friedazebaliliworks@gmail.com?subject=Shopify%20project" class="btn btn-ink">Send an email</a>
+      <a href="https://www.upwork.com/freelancers/~018d5e38c5c45f46b4" target="_blank" rel="noopener noreferrer" class="btn btn-line">Hire me on Upwork ↗</a>
+    </div>
+  </div>
+</section>
 
-<footer class="py-12 border-t border-white/5 bg-black text-center relative z-10">
-<div class="flex flex-col items-center justify-center gap-6">
-<h4 class="font-display font-bold text-2xl tracking-tighter text-white">FRIEDAZE | BLUE</h4>
-<div class="flex gap-8 text-slate-500">
-<a href="mailto:friedazebaliliworks@gmail.com" class="hover:text-cyan-400 transition-colors" aria-label="Email"><i data-lucide="mail" class="w-5 h-5"></i></a>
-<a href="https://www.upwork.com/freelancers/~018d5e38c5c45f46b4" target="_blank" rel="noopener noreferrer" class="hover:text-green-500 transition-colors" aria-label="Upwork"><i data-lucide="briefcase" class="w-5 h-5"></i></a>
-</div>
-<div class="text-xs text-slate-700 flex flex-col gap-2">
-<p>© 2026 Friedaze. All rights reserved.</p>
-<p>Designed in the Void.</p>
-</div>
-</div>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Friedaze (Blue)</span>
+    <span>Shopify developer · Made by hand, no templates</span>
+  </div>
 </footer>
 
-<!-- Floating cart button -->
-<button id="cartFab" class="cart-fab" aria-label="Open your request cart">
-  <i data-lucide="shopping-bag" class="w-6 h-6"></i>
-  <span class="cart-count" data-cart-count>0</span>
-</button>
-
-<!-- Cart drawer -->
-<div id="cartOverlay" class="cart-overlay"></div>
-<aside id="cartDrawer" class="cart-drawer" aria-label="Your request" aria-hidden="true">
-  <div class="flex items-center justify-between p-6 border-b border-white/10">
-    <h3 class="text-white text-lg font-semibold">Your request (<span data-cart-count>0</span>)</h3>
-    <button id="cartClose" class="p-2 rounded-full hover:bg-white/10 text-slate-300" aria-label="Close cart"><i data-lucide="x" class="w-5 h-5"></i></button>
-  </div>
-  <div class="flex-1 overflow-y-auto p-6">
-    <div id="cartEmpty" class="text-center py-10">
-      <i data-lucide="shopping-bag" class="w-10 h-10 text-slate-600 mx-auto mb-4"></i>
-      <p class="text-slate-400 mb-4">Your cart is empty.</p>
-      <a href="#services" class="text-cyan-400 text-sm hover:underline" data-close-cart>Browse services</a>
-    </div>
-    <ul id="cartItems" class="space-y-3"></ul>
-    <div id="cartForm" class="mt-8 space-y-4 hidden">
-      <label class="block">
-        <span class="text-xs uppercase tracking-widest text-slate-500">Your store link</span>
-        <input id="cartStore" type="text" placeholder="yourstore.com" class="cart-input">
-      </label>
-      <label class="block">
-        <span class="text-xs uppercase tracking-widest text-slate-500">Anything I should know?</span>
-        <textarea id="cartNote" rows="4" placeholder="What's going on with your store, deadlines, etc." class="cart-input"></textarea>
-      </label>
-    </div>
-  </div>
-  <div class="p-6 border-t border-white/10 space-y-3">
-    <p class="text-xs text-slate-500">You're not paying anything. This just sends me an email with what you picked.</p>
-    <button id="cartCheckout" class="w-full py-4 rounded-lg bg-green-500 hover:bg-green-400 text-black font-bold transition-colors disabled:opacity-40 disabled:cursor-not-allowed" disabled>Send request</button>
-    <a href="https://www.upwork.com/freelancers/~018d5e38c5c45f46b4" target="_blank" rel="noopener noreferrer" class="block text-center text-sm text-slate-400 hover:text-white">or hire me on Upwork →</a>
-  </div>
-</aside>
-
-
-<script>
-lucide.createIcons();
-</script>
 <script>
 (function(){
-  const EMAIL='friedazebaliliworks@gmail.com';
-  let cart=[];
-  try{cart=JSON.parse(localStorage.getItem('blueCart')||'[]')}catch(e){}
-  const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
-  const drawer=$('#cartDrawer'), overlay=$('#cartOverlay'), fab=$('#cartFab');
-
-  function save(){try{localStorage.setItem('blueCart',JSON.stringify(cart))}catch(e){}}
-  function render(){
-    $$('[data-cart-count]').forEach(el=>el.textContent=cart.length);
-    document.querySelector('.nav-cart .cart-count').style.display=cart.length?'':'none';
-    fab.classList.toggle('show',cart.length>0);
-    $('#cartEmpty').classList.toggle('hidden',cart.length>0);
-    $('#cartForm').classList.toggle('hidden',cart.length===0);
-    $('#cartCheckout').disabled=cart.length===0;
-    const ul=$('#cartItems'); ul.innerHTML='';
-    cart.forEach(it=>{
-      const li=document.createElement('li'); li.className='cart-item';
-      const span=document.createElement('span'); span.textContent=it.name;
-      const rm=document.createElement('button'); rm.setAttribute('aria-label','Remove '+it.name); rm.textContent='×';
-      rm.onclick=()=>toggle(it.id,it.name);
-      li.append(span,rm); ul.appendChild(li);
+  var cards=[].slice.call(document.querySelectorAll('.card'));
+  var btns=[].slice.call(document.querySelectorAll('.filters button'));
+  var more=document.getElementById('moreBtn');
+  var LIMIT=9, expanded=false, filter='all';
+  function apply(){
+    var shown=0;
+    cards.forEach(function(c){
+      var match=filter==='all'||c.dataset.type===filter;
+      var ok=match&&(expanded||filter!=='all'||shown<LIMIT);
+      if(match&&ok)shown++;
+      c.classList.toggle('hide',!ok);
     });
-    $$('.add-btn,.chip').forEach(b=>{
-      const on=cart.some(i=>i.id===b.dataset.id);
-      b.classList.toggle('added',on); b.setAttribute('aria-pressed',on);
-      if(b.classList.contains('add-btn')){b.querySelector('span').textContent=on?'✓ In cart':'Add to cart';b.closest('.product').classList.toggle('in-cart',on)}
-    });
+    more.parentNode.style.display=(filter==='all'&&!expanded)?'':'none';
   }
-  function toggle(id,name){
-    const i=cart.findIndex(x=>x.id===id);
-    if(i>-1)cart.splice(i,1);else{cart.push({id,name});fab.classList.remove('bump');void fab.offsetWidth;fab.classList.add('bump')}
-    save();render();
-  }
-  function open(){drawer.classList.add('open');overlay.classList.add('open');drawer.setAttribute('aria-hidden','false')}
-  function close(){drawer.classList.remove('open');overlay.classList.remove('open');drawer.setAttribute('aria-hidden','true')}
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    btns.forEach(function(x){x.classList.remove('on')});b.classList.add('on');filter=b.dataset.f;apply();
+  })});
+  more.addEventListener('click',function(){expanded=true;apply()});
+  apply();
 
-  $$('.add-btn,.chip').forEach(b=>b.addEventListener('click',()=>toggle(b.dataset.id,b.dataset.name)));
-  $$('[data-open-cart]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();open()}));
-  fab.onclick=open; overlay.onclick=close; $('#cartClose').onclick=close;
-  $$('[data-close-cart]').forEach(a=>a.addEventListener('click',close));
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
-
-  $('#cartCheckout').onclick=()=>{
-    const store=$('#cartStore').value.trim(), note=$('#cartNote').value.trim();
-    const body='Hi Friedaze,\n\nI\'d like help with:\n'+cart.map(i=>'- '+i.name).join('\n')+
-      (store?'\n\nMy store: '+store:'')+(note?'\n\nMore details:\n'+note:'')+'\n\nThanks!';
-    location.href='mailto:'+EMAIL+'?subject='+encodeURIComponent('Shopify help request')+'&body='+encodeURIComponent(body);
-  };
-
-  // Filters
-  $$('.shop-filter').forEach(f=>f.addEventListener('click',()=>{
-    $$('.shop-filter').forEach(x=>x.classList.remove('is-active')); f.classList.add('is-active');
-    $$('.product').forEach(p=>p.classList.toggle('is-hidden',f.dataset.filter!=='all'&&p.dataset.cat!==f.dataset.filter));
-  }));
-
-  // Timeline progress on scroll
-  const tl=$('#timeline');
-  if(tl){
-    const steps=tl.querySelectorAll('li');
-    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
-      tl.style.setProperty('--progress','100%');
-      steps.forEach((s,i)=>setTimeout(()=>s.classList.add('done'),i*320));
-      io.disconnect();
-    }})},{threshold:.35});
-    io.observe(tl);
-  }
-
-  // Seamless review loop: duplicate the cards once
-  const track=$('.review-track');
-  if(track){[...track.children].forEach(c=>{const d=c.cloneNode(true);d.setAttribute('aria-hidden','true');track.appendChild(d)})}
-
-  render();
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+    document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+  } else document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in')});
 })();
 </script>
-
-<script>
-    const cursor = document.getElementById('neon-cursor');
-    const dot = document.getElementById('neon-dot');
-
-    // Smooth Follow Logic
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        
-        dot.style.left = e.clientX + 'px';
-        dot.style.top = e.clientY + 'px';
-    });
-
-    // Click Ripple
-    document.addEventListener('mousedown', (e) => {
-        const ripple = document.createElement('div');
-        ripple.className = 'cursor-click-anim';
-        ripple.style.left = e.clientX + 'px';
-        ripple.style.top = e.clientY + 'px';
-        document.body.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 500);
-    });
-
-    // Hover Scaling for interactive items
-    const links = document.querySelectorAll('a, button, .group');
-    links.forEach(link => {
-        link.addEventListener('mouseenter', () => {
-            cursor.style.transform = 'translate(-50%, -50%) scale(2.5)';
-            cursor.style.backgroundColor = 'rgba(34, 211, 238, 0.1)';
-        });
-        link.addEventListener('mouseleave', () => {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursor.style.backgroundColor = 'transparent';
-        });
-    });
-</script>
-</body></html>
+</body>
+</html>
