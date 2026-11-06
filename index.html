@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Friedaze (Blue) · Shopify Developer</title>
-<meta name="description" content="Friedaze (Blue) builds Shopify product pages, variant designs and full stores. See screenshots of 32 stores and websites I've worked on.">
+<meta name="description" content="Friedaze (Blue) builds Shopify product pages, variant designs and full stores. See screenshots of 31 stores and websites I've worked on.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -44,8 +44,11 @@ em{font-family:var(--serif);font-style:italic;font-weight:400}
 /* hero */
 .hero{padding:72px 0 40px;position:relative}
 .hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
-.avail{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--card);font-size:13px;color:var(--ink-2);margin-bottom:28px}
-.avail i{width:8px;height:8px;border-radius:50%;background:#2fa36b;box-shadow:0 0 0 4px rgba(47,163,107,.18)}
+.eyebrow{display:flex;align-items:center;flex-wrap:wrap;gap:6px 14px;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
+.eyebrow::before{content:"";width:36px;height:1.5px;background:var(--ink)}
+.eyebrow b{color:var(--ink);font-weight:500}
+.eyebrow .tz{display:contents}
+.eyebrow .sep{width:4px;height:4px;border-radius:50%;background:var(--line)}
 h1{font-family:var(--serif);font-weight:400;font-size:clamp(46px,7vw,96px);line-height:.95;letter-spacing:-.02em;margin-bottom:24px}
 h1 .hl{background:linear-gradient(transparent 62%,var(--lime) 62%,var(--lime) 92%,transparent 92%);padding:0 .08em}
 .lead{font-size:clamp(17px,1.6vw,20px);color:var(--ink-2);max-width:34ch;margin-bottom:32px}
@@ -69,7 +72,9 @@ h1 .hl{background:linear-gradient(transparent 62%,var(--lime) 62%,var(--lime) 92
 .dots{display:flex;gap:5px}.dots i{width:9px;height:9px;border-radius:50%;background:#cfc7b6}
 .url{flex:1;font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--card);border-radius:6px;padding:3px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .shot{aspect-ratio:4/3;overflow:hidden;background:repeating-linear-gradient(45deg,var(--paper-2) 0 10px,var(--paper) 10px 20px)}
-.shot img{color:transparent;width:100%;height:100%;object-fit:cover;object-position:top;transition:object-position 3s ease,transform .6s ease}
+.shot{position:relative}
+.shot .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.shot img{position:relative;z-index:1;color:transparent;width:100%;height:100%;object-fit:cover;object-position:top;transition:object-position 3s ease,transform .6s ease}
 
 /* stats */
 .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:48px}
@@ -165,6 +170,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 }
 @media (max-width:680px){
   .nav ul{display:none}
+  .eyebrow{font-size:11px;letter-spacing:.06em;gap:10px}
+  .eyebrow::before{width:20px}
+  .eyebrow .tz{display:none}
   .hero{padding-top:44px}
   .collage{height:400px}
   .collage .h2{top:90px}.collage .h3{top:180px}
@@ -207,7 +215,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <header class="hero">
   <div class="wrap">
     <div>
-      <div class="avail"><i></i> Friedaze, a.k.a. Blue · Shopify developer · GMT+9</div>
+      <p class="eyebrow"><b>Friedaze (Blue)</b><span class="sep"></span>Shopify developer<span class="tz"><span class="sep"></span>GMT+9</span></p>
       <h1>I build the parts of your store that make people <span class="hl"><em>buy.</em></span></h1>
       <p class="lead">Product pages, variant pickers, full Shopify builds, and the fixes nobody else got around to. Scroll down and see the stores for yourself.</p>
       <div class="cta">
@@ -216,10 +224,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       </div>
     </div>
     <div class="collage" aria-hidden="true">
-      <div class="frame h1"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">beautybritain.uk</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://beautybritain.uk/?w=1200" alt="Screenshot of beautybritain.uk" loading="lazy"></div></div>
-      <div class="frame h2"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">aussie-pet.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://www.aussie-pet.com/?w=1200" alt="Screenshot of aussie-pet.com" loading="lazy"></div></div>
-      <div class="frame h3"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">jlindeberg.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://www.jlindeberg.com/?w=1200" alt="Screenshot of jlindeberg.com" loading="lazy"></div></div>
-      <div class="sticker"><div><b>32</b>stores &amp; sites</div></div>
+      <div class="frame h1"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">beautybritain.uk</span></div><div class="shot"><span class="ph">beautybritain.uk</span><img src="shots/beautybritain-uk.jpg" data-url="https://beautybritain.uk/" alt="Screenshot of beautybritain.uk" loading="lazy" onerror="this.remove()"></div></div>
+      <div class="frame h2"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">aussie-pet.com</span></div><div class="shot"><span class="ph">aussie-pet.com</span><img src="shots/aussie-pet-com.jpg" data-url="https://www.aussie-pet.com/" alt="Screenshot of aussie-pet.com" loading="lazy" onerror="this.remove()"></div></div>
+      <div class="frame h3"><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">jlindeberg.com</span></div><div class="shot"><span class="ph">jlindeberg.com</span><img src="shots/jlindeberg-com.jpg" data-url="https://www.jlindeberg.com/" alt="Screenshot of jlindeberg.com" loading="lazy" onerror="this.remove()"></div></div>
+      <div class="sticker"><div><b>31</b>stores &amp; sites</div></div>
     </div>
   </div>
   <div class="stats">
@@ -232,7 +240,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   </div>
 </header>
 
-<div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Beauty Britain</span> <span>Aussie Pet</span> <span>Polska Uroda</span> <span>Svenska Beauty</span> <span>Beauty Kiwi</span> <span>Beauty Australia</span> <span>Paw-Friend</span> <span>Kiwiwags</span> <span>Palsglad</span> <span>Zoologiczny Plus</span> <span>British Pets</span> <span>Tierbedarf Pro</span> <span>Tierbedarf Schweiz</span> <span>EZ Dupe</span> <span>Acumen Disc</span> <span>Mi Pequeñito</span> <span>Onze Wondertjes</span> <span>J.Lindeberg</span> <span>Alo Yoga</span> <span>Brooklinen</span> <span>Ultra Game Shop</span> <span>Woodpanel PH</span> <span>Onesimus</span> <span>Titan 22</span> <span>Hunt Country Furniture</span> <span>Fitgeno</span> <span>Nummyblend</span> <span>Dragoon Gaming</span> <span>Smith &amp; Associates</span> <span>MetroLoft</span> <span>Debra Smalley</span> <span>Akoya Boca West</span> <span>Beauty Britain</span> <span>Aussie Pet</span> <span>Polska Uroda</span> <span>Svenska Beauty</span> <span>Beauty Kiwi</span> <span>Beauty Australia</span> <span>Paw-Friend</span> <span>Kiwiwags</span> <span>Palsglad</span> <span>Zoologiczny Plus</span> <span>British Pets</span> <span>Tierbedarf Pro</span> <span>Tierbedarf Schweiz</span> <span>EZ Dupe</span> <span>Acumen Disc</span> <span>Mi Pequeñito</span> <span>Onze Wondertjes</span> <span>J.Lindeberg</span> <span>Alo Yoga</span> <span>Brooklinen</span> <span>Ultra Game Shop</span> <span>Woodpanel PH</span> <span>Onesimus</span> <span>Titan 22</span> <span>Hunt Country Furniture</span> <span>Fitgeno</span> <span>Nummyblend</span> <span>Dragoon Gaming</span> <span>Smith &amp; Associates</span> <span>MetroLoft</span> <span>Debra Smalley</span> <span>Akoya Boca West</span></div></div>
+<div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Beauty Britain</span> <span>Aussie Pet</span> <span>Polska Uroda</span> <span>Svenska Beauty</span> <span>Beauty Kiwi</span> <span>Beauty Australia</span> <span>Paw-Friend</span> <span>Kiwiwags</span> <span>Palsglad</span> <span>Zoologiczny Plus</span> <span>British Pets</span> <span>Tierbedarf Pro</span> <span>Tierbedarf Schweiz</span> <span>Acumen Disc</span> <span>Mi Pequeñito</span> <span>Onze Wondertjes</span> <span>J.Lindeberg</span> <span>Alo Yoga</span> <span>Brooklinen</span> <span>Ultra Game Shop</span> <span>Woodpanel PH</span> <span>Onesimus</span> <span>Titan 22</span> <span>Hunt Country Furniture</span> <span>Fitgeno</span> <span>Nummyblend</span> <span>Dragoon Gaming</span> <span>Smith &amp; Associates</span> <span>MetroLoft</span> <span>Debra Smalley</span> <span>Akoya Boca West</span> <span>Beauty Britain</span> <span>Aussie Pet</span> <span>Polska Uroda</span> <span>Svenska Beauty</span> <span>Beauty Kiwi</span> <span>Beauty Australia</span> <span>Paw-Friend</span> <span>Kiwiwags</span> <span>Palsglad</span> <span>Zoologiczny Plus</span> <span>British Pets</span> <span>Tierbedarf Pro</span> <span>Tierbedarf Schweiz</span> <span>Acumen Disc</span> <span>Mi Pequeñito</span> <span>Onze Wondertjes</span> <span>J.Lindeberg</span> <span>Alo Yoga</span> <span>Brooklinen</span> <span>Ultra Game Shop</span> <span>Woodpanel PH</span> <span>Onesimus</span> <span>Titan 22</span> <span>Hunt Country Furniture</span> <span>Fitgeno</span> <span>Nummyblend</span> <span>Dragoon Gaming</span> <span>Smith &amp; Associates</span> <span>MetroLoft</span> <span>Debra Smalley</span> <span>Akoya Boca West</span></div></div>
 
 <section id="work">
   <div class="wrap">
@@ -241,170 +249,165 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <p>Real stores, live right now. Hover a screenshot to scroll it, click to open the store.</p>
     </div>
     <div class="filters rv" role="group" aria-label="Filter work">
-      <button class="on" data-f="all">Everything<sup>32</sup></button>
+      <button class="on" data-f="all">Everything<sup>31</sup></button>
       <button data-f="product">Product pages<sup>5</sup></button>
       <button data-f="variant">Variant design<sup>8</sup></button>
-      <button data-f="store">Store work<sup>15</sup></button>
+      <button data-f="store">Store work<sup>14</sup></button>
       <button data-f="web">Websites<sup>4</sup></button>
     </div>
     <div class="grid" id="grid">
       <a class="card" data-type="product" href="https://beautybritain.uk/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">beautybritain.uk</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://beautybritain.uk/?w=1200" alt="Screenshot of beautybritain.uk" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">beautybritain.uk</span></div><div class="shot"><span class="ph">beautybritain.uk</span><img src="shots/beautybritain-uk.jpg" data-url="https://beautybritain.uk/" alt="Screenshot of beautybritain.uk" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Beauty Britain</h3><span class="tag tag-product">Product page</span></div>
         <p class="sector">Beauty · UK</p>
       </a>
       <a class="card" data-type="variant" href="https://www.aussie-pet.com/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">aussie-pet.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://www.aussie-pet.com/?w=1200" alt="Screenshot of aussie-pet.com" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">aussie-pet.com</span></div><div class="shot"><span class="ph">aussie-pet.com</span><img src="shots/aussie-pet-com.jpg" data-url="https://www.aussie-pet.com/" alt="Screenshot of aussie-pet.com" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Aussie Pet</h3><span class="tag tag-variant">Variant design</span></div>
         <p class="sector">Pet supplies · Australia</p>
       </a>
       <a class="card" data-type="product" href="https://polska-uroda.pl/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">polska-uroda.pl</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://polska-uroda.pl/?w=1200" alt="Screenshot of polska-uroda.pl" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">polska-uroda.pl</span></div><div class="shot"><span class="ph">polska-uroda.pl</span><img src="shots/polska-uroda-pl.jpg" data-url="https://polska-uroda.pl/" alt="Screenshot of polska-uroda.pl" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Polska Uroda</h3><span class="tag tag-product">Product page</span></div>
         <p class="sector">Beauty · Poland</p>
       </a>
       <a class="card" data-type="product" href="https://svenskabeauty.se/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">svenskabeauty.se</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://svenskabeauty.se/?w=1200" alt="Screenshot of svenskabeauty.se" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">svenskabeauty.se</span></div><div class="shot"><span class="ph">svenskabeauty.se</span><img src="shots/svenskabeauty-se.jpg" data-url="https://svenskabeauty.se/" alt="Screenshot of svenskabeauty.se" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Svenska Beauty</h3><span class="tag tag-product">Product page</span></div>
         <p class="sector">Beauty · Sweden</p>
       </a>
       <a class="card" data-type="product" href="https://beautykiwi.nz/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">beautykiwi.nz</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://beautykiwi.nz/?w=1200" alt="Screenshot of beautykiwi.nz" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">beautykiwi.nz</span></div><div class="shot"><span class="ph">beautykiwi.nz</span><img src="shots/beautykiwi-nz.jpg" data-url="https://beautykiwi.nz/" alt="Screenshot of beautykiwi.nz" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Beauty Kiwi</h3><span class="tag tag-product">Product page</span></div>
         <p class="sector">Beauty · New Zealand</p>
       </a>
       <a class="card" data-type="product" href="https://beauty-australia.com/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">beauty-australia.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://beauty-australia.com/?w=1200" alt="Screenshot of beauty-australia.com" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">beauty-australia.com</span></div><div class="shot"><span class="ph">beauty-australia.com</span><img src="shots/beauty-australia-com.jpg" data-url="https://beauty-australia.com/" alt="Screenshot of beauty-australia.com" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Beauty Australia</h3><span class="tag tag-product">Product page</span></div>
         <p class="sector">Beauty · Australia</p>
       </a>
       <a class="card" data-type="variant" href="https://paw-friend.com/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">paw-friend.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://paw-friend.com/?w=1200" alt="Screenshot of paw-friend.com" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">paw-friend.com</span></div><div class="shot"><span class="ph">paw-friend.com</span><img src="shots/paw-friend-com.jpg" data-url="https://paw-friend.com/" alt="Screenshot of paw-friend.com" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Paw-Friend</h3><span class="tag tag-variant">Variant design</span></div>
         <p class="sector">Pet supplies</p>
       </a>
       <a class="card" data-type="variant" href="https://kiwiwags.nz/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">kiwiwags.nz</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://kiwiwags.nz/?w=1200" alt="Screenshot of kiwiwags.nz" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">kiwiwags.nz</span></div><div class="shot"><span class="ph">kiwiwags.nz</span><img src="shots/kiwiwags-nz.jpg" data-url="https://kiwiwags.nz/" alt="Screenshot of kiwiwags.nz" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Kiwiwags</h3><span class="tag tag-variant">Variant design</span></div>
         <p class="sector">Pet supplies · New Zealand</p>
       </a>
       <a class="card" data-type="variant" href="https://palsglad.se/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">palsglad.se</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://palsglad.se/?w=1200" alt="Screenshot of palsglad.se" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">palsglad.se</span></div><div class="shot"><span class="ph">palsglad.se</span><img src="shots/palsglad-se.jpg" data-url="https://palsglad.se/" alt="Screenshot of palsglad.se" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Palsglad</h3><span class="tag tag-variant">Variant design</span></div>
         <p class="sector">Pet supplies · Sweden</p>
       </a>
       <a class="card" data-type="variant" href="https://zoologiczny-plus.pl/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">zoologiczny-plus.pl</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://zoologiczny-plus.pl/?w=1200" alt="Screenshot of zoologiczny-plus.pl" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">zoologiczny-plus.pl</span></div><div class="shot"><span class="ph">zoologiczny-plus.pl</span><img src="shots/zoologiczny-plus-pl.jpg" data-url="https://zoologiczny-plus.pl/" alt="Screenshot of zoologiczny-plus.pl" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Zoologiczny Plus</h3><span class="tag tag-variant">Variant design</span></div>
         <p class="sector">Pet supplies · Poland</p>
       </a>
       <a class="card" data-type="variant" href="https://britishpets.uk/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">britishpets.uk</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://britishpets.uk/?w=1200" alt="Screenshot of britishpets.uk" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">britishpets.uk</span></div><div class="shot"><span class="ph">britishpets.uk</span><img src="shots/britishpets-uk.jpg" data-url="https://britishpets.uk/" alt="Screenshot of britishpets.uk" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>British Pets</h3><span class="tag tag-variant">Variant design</span></div>
         <p class="sector">Pet supplies · UK</p>
       </a>
       <a class="card" data-type="variant" href="https://tierbedarf-pro.de/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">tierbedarf-pro.de</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://tierbedarf-pro.de/?w=1200" alt="Screenshot of tierbedarf-pro.de" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">tierbedarf-pro.de</span></div><div class="shot"><span class="ph">tierbedarf-pro.de</span><img src="shots/tierbedarf-pro-de.jpg" data-url="https://tierbedarf-pro.de/" alt="Screenshot of tierbedarf-pro.de" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Tierbedarf Pro</h3><span class="tag tag-variant">Variant design</span></div>
         <p class="sector">Pet supplies · Germany</p>
       </a>
       <a class="card" data-type="variant" href="https://tierbedarfschweiz.ch/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">tierbedarfschweiz.ch</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://tierbedarfschweiz.ch/?w=1200" alt="Screenshot of tierbedarfschweiz.ch" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">tierbedarfschweiz.ch</span></div><div class="shot"><span class="ph">tierbedarfschweiz.ch</span><img src="shots/tierbedarfschweiz-ch.jpg" data-url="https://tierbedarfschweiz.ch/" alt="Screenshot of tierbedarfschweiz.ch" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Tierbedarf Schweiz</h3><span class="tag tag-variant">Variant design</span></div>
         <p class="sector">Pet supplies · Switzerland</p>
       </a>
-      <a class="card" data-type="store" href="https://us.ezdupe.com/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">us.ezdupe.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://us.ezdupe.com/?w=1200" alt="Screenshot of us.ezdupe.com" loading="lazy"></div></div>
-        <div class="meta"><h3>EZ Dupe</h3><span class="tag tag-store">Store work</span></div>
-        <p class="sector">USA</p>
-      </a>
       <a class="card" data-type="store" href="https://acumendisc.com/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">acumendisc.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://acumendisc.com/?w=1200" alt="Screenshot of acumendisc.com" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">acumendisc.com</span></div><div class="shot"><span class="ph">acumendisc.com</span><img src="shots/acumendisc-com.jpg" data-url="https://acumendisc.com/" alt="Screenshot of acumendisc.com" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Acumen Disc</h3><span class="tag tag-store">Store work</span></div>
         <p class="sector">Online store</p>
       </a>
       <a class="card" data-type="store" href="https://mipequenito.mx/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">mipequenito.mx</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://mipequenito.mx/?w=1200" alt="Screenshot of mipequenito.mx" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">mipequenito.mx</span></div><div class="shot"><span class="ph">mipequenito.mx</span><img src="shots/mipequenito-mx.jpg" data-url="https://mipequenito.mx/" alt="Screenshot of mipequenito.mx" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Mi Pequeñito</h3><span class="tag tag-store">Store work</span></div>
         <p class="sector">Mexico</p>
       </a>
       <a class="card" data-type="store" href="https://onzewondertjes.nl/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">onzewondertjes.nl</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://onzewondertjes.nl/?w=1200" alt="Screenshot of onzewondertjes.nl" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">onzewondertjes.nl</span></div><div class="shot"><span class="ph">onzewondertjes.nl</span><img src="shots/onzewondertjes-nl.jpg" data-url="https://onzewondertjes.nl/" alt="Screenshot of onzewondertjes.nl" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Onze Wondertjes</h3><span class="tag tag-store">Store work</span></div>
         <p class="sector">Netherlands</p>
       </a>
       <a class="card" data-type="store" href="https://www.jlindeberg.com/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">jlindeberg.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://www.jlindeberg.com/?w=1200" alt="Screenshot of jlindeberg.com" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">jlindeberg.com</span></div><div class="shot"><span class="ph">jlindeberg.com</span><img src="shots/jlindeberg-com.jpg" data-url="https://www.jlindeberg.com/" alt="Screenshot of jlindeberg.com" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>J.Lindeberg</h3><span class="tag tag-store">Store work</span></div>
         <p class="sector">Fashion</p>
       </a>
       <a class="card" data-type="store" href="https://www.aloyoga.com/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">aloyoga.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://www.aloyoga.com/?w=1200" alt="Screenshot of aloyoga.com" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">aloyoga.com</span></div><div class="shot"><span class="ph">aloyoga.com</span><img src="shots/aloyoga-com.jpg" data-url="https://www.aloyoga.com/" alt="Screenshot of aloyoga.com" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Alo Yoga</h3><span class="tag tag-store">Store work</span></div>
         <p class="sector">Athleisure</p>
       </a>
       <a class="card" data-type="store" href="https://www.brooklinen.com/pages/new-comforters-pillows" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">brooklinen.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://www.brooklinen.com/pages/new-comforters-pillows?w=1200" alt="Screenshot of brooklinen.com" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">brooklinen.com</span></div><div class="shot"><span class="ph">brooklinen.com</span><img src="shots/brooklinen-com.jpg" data-url="https://www.brooklinen.com/pages/new-comforters-pillows" alt="Screenshot of brooklinen.com" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Brooklinen</h3><span class="tag tag-store">Store work</span></div>
         <p class="sector">Bedding · landing page</p>
       </a>
       <a class="card" data-type="store" href="https://ultragameshop.com/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">ultragameshop.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://ultragameshop.com/?w=1200" alt="Screenshot of ultragameshop.com" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">ultragameshop.com</span></div><div class="shot"><span class="ph">ultragameshop.com</span><img src="shots/ultragameshop-com.jpg" data-url="https://ultragameshop.com/" alt="Screenshot of ultragameshop.com" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Ultra Game Shop</h3><span class="tag tag-store">Store work</span></div>
         <p class="sector">Gaming &amp; electronics</p>
       </a>
       <a class="card" data-type="store" href="https://woodpanel.ph/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">woodpanel.ph</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://woodpanel.ph/?w=1200" alt="Screenshot of woodpanel.ph" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">woodpanel.ph</span></div><div class="shot"><span class="ph">woodpanel.ph</span><img src="shots/woodpanel-ph.jpg" data-url="https://woodpanel.ph/" alt="Screenshot of woodpanel.ph" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Woodpanel PH</h3><span class="tag tag-store">Store work</span></div>
         <p class="sector">Home improvement · Shopify Plus</p>
       </a>
       <a class="card" data-type="store" href="https://onesimus.com.ph/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">onesimus.com.ph</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://onesimus.com.ph/?w=1200" alt="Screenshot of onesimus.com.ph" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">onesimus.com.ph</span></div><div class="shot"><span class="ph">onesimus.com.ph</span><img src="shots/onesimus-com-ph.jpg" data-url="https://onesimus.com.ph/" alt="Screenshot of onesimus.com.ph" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Onesimus</h3><span class="tag tag-store">Store work</span></div>
         <p class="sector">Men's fashion</p>
       </a>
       <a class="card" data-type="store" href="https://titan22.com/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">titan22.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://titan22.com/?w=1200" alt="Screenshot of titan22.com" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">titan22.com</span></div><div class="shot"><span class="ph">titan22.com</span><img src="shots/titan22-com.jpg" data-url="https://titan22.com/" alt="Screenshot of titan22.com" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Titan 22</h3><span class="tag tag-store">Store work</span></div>
         <p class="sector">Basketball</p>
       </a>
       <a class="card" data-type="store" href="https://www.huntcountryfurniture.com/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">huntcountryfurniture.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://www.huntcountryfurniture.com/?w=1200" alt="Screenshot of huntcountryfurniture.com" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">huntcountryfurniture.com</span></div><div class="shot"><span class="ph">huntcountryfurniture.com</span><img src="shots/huntcountryfurniture-com.jpg" data-url="https://www.huntcountryfurniture.com/" alt="Screenshot of huntcountryfurniture.com" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Hunt Country Furniture</h3><span class="tag tag-store">Store work</span></div>
         <p class="sector">Furniture</p>
       </a>
       <a class="card" data-type="store" href="https://fitgeno.com/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">fitgeno.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://fitgeno.com/?w=1200" alt="Screenshot of fitgeno.com" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">fitgeno.com</span></div><div class="shot"><span class="ph">fitgeno.com</span><img src="shots/fitgeno-com.jpg" data-url="https://fitgeno.com/" alt="Screenshot of fitgeno.com" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Fitgeno</h3><span class="tag tag-store">Store work</span></div>
         <p class="sector">Health &amp; wellness</p>
       </a>
       <a class="card" data-type="store" href="https://nummyblend.com/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">nummyblend.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://nummyblend.com/?w=1200" alt="Screenshot of nummyblend.com" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">nummyblend.com</span></div><div class="shot"><span class="ph">nummyblend.com</span><img src="shots/nummyblend-com.jpg" data-url="https://nummyblend.com/" alt="Screenshot of nummyblend.com" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Nummyblend</h3><span class="tag tag-store">Store work</span></div>
         <p class="sector">Kitchen appliances</p>
       </a>
       <a class="card" data-type="store" href="https://dragoongaming.co.uk/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">dragoongaming.co.uk</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://dragoongaming.co.uk/?w=1200" alt="Screenshot of dragoongaming.co.uk" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">dragoongaming.co.uk</span></div><div class="shot"><span class="ph">dragoongaming.co.uk</span><img src="shots/dragoongaming-co-uk.jpg" data-url="https://dragoongaming.co.uk/" alt="Screenshot of dragoongaming.co.uk" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Dragoon Gaming</h3><span class="tag tag-store">Store work</span></div>
         <p class="sector">Gaming gear · UK</p>
       </a>
       <a class="card" data-type="web" href="https://www.smithandassociates.com/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">smithandassociates.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://www.smithandassociates.com/?w=1200" alt="Screenshot of smithandassociates.com" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">smithandassociates.com</span></div><div class="shot"><span class="ph">smithandassociates.com</span><img src="shots/smithandassociates-com.jpg" data-url="https://www.smithandassociates.com/" alt="Screenshot of smithandassociates.com" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Smith &amp; Associates</h3><span class="tag tag-web">Website</span></div>
         <p class="sector">Real estate</p>
       </a>
       <a class="card" data-type="web" href="https://metroloft.com/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">metroloft.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://metroloft.com/?w=1200" alt="Screenshot of metroloft.com" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">metroloft.com</span></div><div class="shot"><span class="ph">metroloft.com</span><img src="shots/metroloft-com.jpg" data-url="https://metroloft.com/" alt="Screenshot of metroloft.com" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>MetroLoft</h3><span class="tag tag-web">Website</span></div>
         <p class="sector">NYC rentals</p>
       </a>
       <a class="card" data-type="web" href="https://debrasmalley.com/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">debrasmalley.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://debrasmalley.com/?w=1200" alt="Screenshot of debrasmalley.com" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">debrasmalley.com</span></div><div class="shot"><span class="ph">debrasmalley.com</span><img src="shots/debrasmalley-com.jpg" data-url="https://debrasmalley.com/" alt="Screenshot of debrasmalley.com" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Debra Smalley</h3><span class="tag tag-web">Website</span></div>
         <p class="sector">Professional services</p>
       </a>
       <a class="card" data-type="web" href="https://akoyabocawest.com/" target="_blank" rel="noopener noreferrer">
-        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">akoyabocawest.com</span></div><div class="shot"><img src="https://s.wordpress.com/mshots/v1/https://akoyabocawest.com/?w=1200" alt="Screenshot of akoyabocawest.com" loading="lazy"></div></div>
+        <div class="frame "><div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">akoyabocawest.com</span></div><div class="shot"><span class="ph">akoyabocawest.com</span><img src="shots/akoyabocawest-com.jpg" data-url="https://akoyabocawest.com/" alt="Screenshot of akoyabocawest.com" loading="lazy" onerror="this.remove()"></div></div>
         <div class="meta"><h3>Akoya Boca West</h3><span class="tag tag-web">Website</span></div>
         <p class="sector">Real estate</p>
       </a>
