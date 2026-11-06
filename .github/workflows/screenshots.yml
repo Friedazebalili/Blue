@@ -27,7 +27,7 @@ jobs:
       - run: npm install --no-save playwright@1.47.2
       - run: npx playwright install --with-deps chromium
       - run: node .github/scripts/screenshots.mjs
-        timeout-minutes: 10
+        timeout-minutes: 15
       - name: Commit screenshots
         if: ${{ !cancelled() }}
         run: |
