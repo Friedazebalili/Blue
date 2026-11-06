@@ -44,8 +44,11 @@ em{font-family:var(--serif);font-style:italic;font-weight:400}
 /* hero */
 .hero{padding:72px 0 40px;position:relative}
 .hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
-.avail{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--card);font-size:13px;color:var(--ink-2);margin-bottom:28px}
-.avail i{width:8px;height:8px;border-radius:50%;background:#2fa36b;box-shadow:0 0 0 4px rgba(47,163,107,.18)}
+.eyebrow{display:flex;align-items:center;flex-wrap:wrap;gap:6px 14px;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
+.eyebrow::before{content:"";width:36px;height:1.5px;background:var(--ink)}
+.eyebrow b{color:var(--ink);font-weight:500}
+.eyebrow .tz{display:contents}
+.eyebrow .sep{width:4px;height:4px;border-radius:50%;background:var(--line)}
 h1{font-family:var(--serif);font-weight:400;font-size:clamp(46px,7vw,96px);line-height:.95;letter-spacing:-.02em;margin-bottom:24px}
 h1 .hl{background:linear-gradient(transparent 62%,var(--lime) 62%,var(--lime) 92%,transparent 92%);padding:0 .08em}
 .lead{font-size:clamp(17px,1.6vw,20px);color:var(--ink-2);max-width:34ch;margin-bottom:32px}
@@ -165,6 +168,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 }
 @media (max-width:680px){
   .nav ul{display:none}
+  .eyebrow{font-size:11px;letter-spacing:.06em;gap:10px}
+  .eyebrow::before{width:20px}
+  .eyebrow .tz{display:none}
   .hero{padding-top:44px}
   .collage{height:400px}
   .collage .h2{top:90px}.collage .h3{top:180px}
@@ -207,7 +213,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <header class="hero">
   <div class="wrap">
     <div>
-      <div class="avail"><i></i> Friedaze, a.k.a. Blue · Shopify developer · GMT+9</div>
+      <p class="eyebrow"><b>Friedaze (Blue)</b><span class="sep"></span>Shopify developer<span class="tz"><span class="sep"></span>GMT+9</span></p>
       <h1>I build the parts of your store that make people <span class="hl"><em>buy.</em></span></h1>
       <p class="lead">Product pages, variant pickers, full Shopify builds, and the fixes nobody else got around to. Scroll down and see the stores for yourself.</p>
       <div class="cta">
