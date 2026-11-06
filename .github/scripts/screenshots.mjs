@@ -15,7 +15,11 @@ const CONSENT = ['Accept', 'Accept all', 'Accept All', 'Allow all', 'Allow All',
 const BLOCKED = /checking your browser|verify you are human|are you a robot|attention required|access denied|just a moment/i;
 
 // Real Google Chrome plays video banners (H.264); fall back to bundled Chromium.
-const browser = await chromium.launch({ channel: 'chrome' }).catch(() => chromium.launch());
+// --disable-http2 works around servers with broken HTTP/2 (debrasmalley.com).
+const args = ['--disable-http2', '--autoplay-policy=no-user-gesture-required'];
+const browser = await chromium.launch({ channel: 'chrome', args })
+  .then(b => (console.log('Using Google Chrome'), b))
+  .catch(() => (console.log('Using bundled Chromium'), chromium.launch({ args })));
 const context = await browser.newContext({
   viewport: { width: W, height: H },
   deviceScaleFactor: 1,
@@ -40,8 +44,9 @@ async function hideOverlays(page) {
     // Other fixed layers covering a big part of the screen (overlays, backdrops)
     for (const el of document.querySelectorAll('body *')) {
       if (getComputedStyle(el).position !== 'fixed' || safe(el)) continue;
-      const r = el.getBoundingClientRect();
-      if (r.width * r.height > W * H * 0.25) hide(el);
+      const r = el.getBoundingClientRect(), area = r.width * r.height;
+      // big overlays anywhere, or floating boxes (rewards, chat, promos) below the header area
+      if (area > W * H * 0.25 || (r.top > 150 && area > W * H * 0.015)) hide(el);
     }
     for (const el of [document.documentElement, document.body]) el.style.setProperty('overflow', 'visible', 'important');
   }, { W, H });
@@ -63,6 +68,11 @@ async function capture(file, url) {
     for (let y = 0; y <= SHOT_H; y += 400) { await page.mouse.wheel(0, 400); await page.waitForTimeout(250); }
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.waitForTimeout(1500);
+    // Wait for video banners on the first screen to start playing
+    await page.evaluate(() => document.querySelectorAll('video').forEach(v => { v.muted = true; v.play?.().catch(() => {}); }));
+    await page.waitForFunction(() => [...document.querySelectorAll('video')]
+      .filter(v => v.getBoundingClientRect().top < innerHeight)
+      .every(v => v.readyState >= 3 && v.currentTime > 0.3), null, { timeout: 15000 }).catch(() => {});
     await page.keyboard.press('Escape').catch(() => {});
     await hideOverlays(page);
     await page.waitForTimeout(2500); // let hero animations and sliders settle
