@@ -1,7 +1,7 @@
 <html lang="en" class="scroll-smooth"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BLUE - Shopify & Wordpress Wizard &amp; SEO Architect</title>
+<title>BLUE - Shopify Developer</title>
 <script src="https://unpkg.com/lucide@latest"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -104,7 +104,7 @@ scrollbar-width: none;
 /* Glassmorphism utilities */
 .glass-panel {
 background: rgba(255, 255, 255, 0.02);
-backdrop-filter: blur(10px);F
+backdrop-filter: blur(10px);
 border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -209,6 +209,77 @@ html, body {
     html, body { cursor: auto !important; }
     #neon-cursor, #neon-dot { display: none; }
 }
+
+/* --- SERVICE SHOP --- */
+.shop-filter{padding:.5rem 1.1rem;border-radius:9999px;border:1px solid rgba(255,255,255,.1);color:#cbd5e1;font-size:.875rem;transition:all .25s}
+.shop-filter:hover{border-color:rgba(74,222,128,.5);color:#fff}
+.shop-filter.is-active{background:#4ade80;border-color:#4ade80;color:#02040a;font-weight:600}
+.product{display:flex;flex-direction:column;border-radius:1rem;border:1px solid rgba(255,255,255,.08);background:#070a10;overflow:hidden;transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease,opacity .3s}
+.product:hover{transform:translateY(-6px);border-color:rgba(74,222,128,.4);box-shadow:0 20px 40px -20px rgba(74,222,128,.25)}
+.product.is-hidden{display:none}
+.product.in-cart{border-color:rgba(74,222,128,.6)}
+.product-media{position:relative;aspect-ratio:16/10;background:radial-gradient(circle at 50% 120%,rgba(34,211,238,.12),transparent 60%),linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px) 0 0/20px 20px,linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px) 0 0/20px 20px,#05070c;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center}
+.product-tag{position:absolute;top:14px;left:14px;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:3px 8px;border-radius:4px;color:#22d3ee;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2)}
+.product-tag.tag-green{color:#4ade80;background:rgba(74,222,128,.08);border-color:rgba(74,222,128,.2)}
+.product-tag.tag-pink{color:#f472b6;background:rgba(244,114,182,.08);border-color:rgba(244,114,182,.2)}
+.ill{width:72%;height:auto;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .5s ease}
+.product:hover .ill{transform:scale(1.06)}
+.s-dim{stroke:rgba(148,163,184,.35)}.s-cyan{stroke:#22d3ee}.s-green{stroke:#4ade80}.s-pink{stroke:#f472b6}
+.flow{stroke-dasharray:6 6;animation:flow 1.2s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-24}}
+.needle{transform-origin:100px 100px;animation:needle 3s ease-in-out infinite alternate}
+@keyframes needle{0%{transform:rotate(-70deg)}100%{transform:rotate(0)}}
+.bars{stroke-dasharray:70;stroke-dashoffset:70;animation:grow 2.4s ease-out infinite}
+@keyframes grow{0%{stroke-dashoffset:70}50%,100%{stroke-dashoffset:0}}
+.pen{animation:pen 2s ease-in-out infinite alternate}
+@keyframes pen{to{transform:translate(-14px,4px)}}
+.product-body{padding:1.5rem 1.5rem 0;flex:1}
+.product-body h3{color:#fff;font-size:1.25rem;font-weight:700;margin-bottom:.5rem}
+.product-body p{font-size:.9rem;color:#94a3b8;line-height:1.6;margin-bottom:1rem}
+.product-body ul{font-size:.85rem;color:#cbd5e1;display:grid;gap:.4rem}
+.product-body li{padding-left:1.25rem;position:relative}
+.product-body li::before{content:"";position:absolute;left:0;top:.5em;width:.5rem;height:.5rem;border-radius:2px;background:#4ade80;opacity:.7}
+.product-foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.5rem}
+.price{font-family:ui-monospace,monospace;font-size:.75rem;color:#64748b}
+.add-btn{padding:.6rem 1.1rem;border-radius:.5rem;background:#fff;color:#02040a;font-weight:600;font-size:.85rem;transition:all .25s;white-space:nowrap}
+.add-btn:hover{background:#4ade80}
+.add-btn.added{background:transparent;color:#4ade80;box-shadow:inset 0 0 0 1px #4ade80}
+.chip{padding:.55rem 1rem;border-radius:9999px;border:1px dashed rgba(255,255,255,.2);color:#cbd5e1;font-size:.875rem;transition:all .2s}
+.chip::before{content:"+ ";color:#4ade80;font-weight:700}
+.chip:hover{border-color:#4ade80;color:#fff}
+.chip.added{border-style:solid;border-color:#4ade80;background:rgba(74,222,128,.1);color:#fff}
+.chip.added::before{content:"✓ "}
+
+/* --- ORDER TIMELINE --- */
+.timeline{position:relative;display:grid;gap:1.75rem;padding-left:2.25rem}
+.timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:rgba(255,255,255,.08)}
+.timeline::after{content:"";position:absolute;left:9px;top:6px;width:2px;height:var(--progress,0%);max-height:calc(100% - 12px);background:linear-gradient(#4ade80,#22d3ee);transition:height 1.6s ease}
+.timeline li{position:relative}
+.timeline .dot{position:absolute;left:-2.25rem;top:2px;width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.15);background:#070a10;z-index:1;transition:all .4s}
+.timeline li.done .dot{border-color:#4ade80;background:#4ade80;box-shadow:0 0 12px rgba(74,222,128,.6)}
+.timeline h4{color:#fff;font-weight:600;font-family:'Inter',sans-serif;margin-bottom:.2rem}
+.timeline p{font-size:.875rem;color:#94a3b8}
+.summary-row{display:flex;justify-content:space-between;gap:1rem;padding-bottom:1rem;border-bottom:1px dashed rgba(255,255,255,.08);color:#cbd5e1}
+.summary-row span:last-child{color:#4ade80;font-family:ui-monospace,monospace;font-size:.75rem}
+
+/* --- CART --- */
+.cart-fab{position:fixed;right:24px;bottom:24px;z-index:60;width:60px;height:60px;border-radius:50%;background:#4ade80;color:#02040a;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px -5px rgba(74,222,128,.5);transform:scale(0);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.cart-fab.show{transform:scale(1)}
+.cart-fab.bump{animation:bump .4s}
+@keyframes bump{50%{transform:scale(1.2)}}
+.cart-count{position:absolute;top:-4px;right:-4px;min-width:22px;height:22px;border-radius:11px;background:#fff;color:#02040a;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 5px}
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:70;opacity:0;pointer-events:none;transition:opacity .3s}
+.cart-overlay.open{opacity:1;pointer-events:auto}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:#05070c;border-left:1px solid rgba(255,255,255,.1);z-index:80;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.cart-drawer.open{transform:translateX(0)}
+.cart-item{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 1rem;border-radius:.6rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);color:#e2e8f0;font-size:.9rem}
+.cart-item button{color:#64748b;font-size:1.1rem;line-height:1}
+.cart-item button:hover{color:#f472b6}
+.cart-input{margin-top:.5rem;width:100%;padding:.75rem 1rem;border-radius:.5rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:.9rem;outline:none;cursor:text}
+.cart-input:focus{border-color:#4ade80}
+.nav-cart{position:relative}
+.nav-cart .cart-count{top:-8px;right:-10px;min-width:18px;height:18px;font-size:10px;background:#4ade80}
+@media (prefers-reduced-motion:reduce){.flow,.needle,.bars,.pen,.review-track{animation:none}.bars{stroke-dashoffset:0}}
 </style>
   
 </head>
@@ -227,15 +298,19 @@ html, body {
 FRIEDAZE<span class="text-cyan-500 group-hover:animate-pulse">.</span>
 </a>
 <div class="hidden md:flex gap-8 text-sm font-medium items-center">
-<a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
-<a href="#stack" class="hover:text-cyan-400 transition-colors">Stack</a>
-<a href="#seo" class="hover:text-cyan-400 transition-colors">SEO</a>
+<a href="#services" class="hover:text-cyan-400 transition-colors">Services</a>
+<a href="#process" class="hover:text-cyan-400 transition-colors">How it works</a>
 <a href="#work" class="hover:text-cyan-400 transition-colors">Work</a>
 <a href="#reviews" class="hover:text-cyan-400 transition-colors">Reviews</a>
 </div>
+<div class="flex items-center gap-5">
+<button data-open-cart class="nav-cart text-white hover:text-green-400 transition-colors" aria-label="Open your request cart">
+<i data-lucide="shopping-bag" class="w-5 h-5"></i><span class="cart-count" data-cart-count>0</span>
+</button>
 <a href="#contact" class="px-4 py-2 rounded-full border border-white/10 text-xs font-semibold text-white bg-white/5 hover:bg-cyan-500 hover:border-cyan-500 hover:text-black transition-all duration-300">
 Hire Me
 </a>
+</div>
 </div>
 </nav>
 
@@ -250,7 +325,7 @@ Hire Me
 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
 <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
 </span>
-Shopify & WordPress Wizard on Upwork
+Available for Shopify projects
 </div>
 
 <div class="space-y-4 max-w-5xl mx-auto">
@@ -263,16 +338,16 @@ The NERD behind <span class="text-white font-semibold">Friedaze</span>
 </h2>
 
 <p class="text-base md:text-lg text-slate-400 max-w-2xl mx-auto font-light leading-relaxed pt-4">
-Forging elite digital realities. Specialized in <span class="text-cyan-400 font-medium">High-Performance SEO</span>, <span class="text-white font-medium">Shopify Plus</span> &amp; <span class="text-white font-medium">WordPress</span> ecosystems.
+I build and fix <span class="text-white font-medium">Shopify stores</span>. New stores, redesigns, slow sites, broken checkouts, the small stuff your team never gets around to.
 </p>
 
 <div class="pt-8 flex flex-col md:flex-row gap-4 justify-center items-center">
-                    <a href="#work" class="group relative px-8 py-4 bg-white text-black font-semibold rounded-none skew-x-[-12deg] hover:bg-cyan-400 transition-colors duration-300">
-                        <div class="skew-x-[12deg]">VIEW PROJECTS</div>
+                    <a href="#services" class="group relative px-8 py-4 bg-white text-black font-semibold rounded-none skew-x-[-12deg] hover:bg-green-400 transition-colors duration-300">
+                        <div class="skew-x-[12deg]">BROWSE SERVICES</div>
                         <div class="absolute inset-0 border border-white group-hover:border-cyan-400 translate-x-1 translate-y-1 -z-10 transition-transform"></div>
                     </a>
-                    <a href="#reviews" class="px-8 py-4 text-white font-medium hover:text-cyan-400 transition-colors flex items-center gap-2">
-                        READ REVIEWS <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    <a href="#work" class="px-8 py-4 text-white font-medium hover:text-cyan-400 transition-colors flex items-center gap-2">
+                        VIEW PROJECTS <i data-lucide="chevron-right" class="w-4 h-4"></i>
                     </a>
                 </div>
 
@@ -300,156 +375,248 @@ Forging elite digital realities. Specialized in <span class="text-cyan-400 font-
 </div>
 </section>
 
-<!-- About Identity -->
-<section id="about" class="py-24 px-6 border-b border-white/5 relative overflow-hidden">
-<div class="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-blue-900/10 to-transparent pointer-events-none"></div>
+<!-- Service Shop -->
+<section id="services" class="py-28 px-6 relative">
+  <div class="max-w-7xl mx-auto">
 
-<div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-center">
-<div class="w-full md:w-1/2 space-y-8">
-<h2 class="text-4xl md:text-5xl font-bold text-white font-display tracking-tight">
-Real Name: <span class="text-gradient">Friedaze</span>
-</h2>
-<div class="space-y-6 text-lg font-light text-slate-400">
-<p>
-While the digital world knows me as <strong class="text-white">BLUE</strong>, my real name is <strong class="text-white">Friedaze</strong>. <br>I am not just a coder; I am a technical partner for brands that refuse to settle for "average."
-</p>
-<p>
-I combine the aesthetic eye of a designer with the ruthless efficiency of a systems engineer. My code is clean, my SEO strategies are data-driven, and my communication is crystal clear.
-</p>
-<ul class="grid grid-cols-1 gap-3 pt-4">
-<li class="flex items-center gap-3 text-sm text-slate-300">
-<i data-lucide="check-circle-2" class="w-5 h-5 text-cyan-500"></i> Full-Cycle Development
-</li>
-<li class="flex items-center gap-3 text-sm text-slate-300">
-<i data-lucide="check-circle-2" class="w-5 h-5 text-cyan-500"></i> Technical SEO Audits
-</li>
-<li class="flex items-center gap-3 text-sm text-slate-300">
-<i data-lucide="check-circle-2" class="w-5 h-5 text-cyan-500"></i> Conversion Rate Optimization
-</li>
-</ul>
-</div>
-</div>
+    <!-- Storefront header -->
+    <div class="flex items-center gap-2 text-xs font-mono text-slate-500 mb-6">
+      <i data-lucide="store" class="w-4 h-4 text-green-500"></i>
+      <span>friedaze.store</span><span class="text-slate-700">/</span><span class="text-slate-300">services</span>
+    </div>
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
+      <div class="max-w-2xl">
+        <h2 class="text-4xl md:text-6xl font-bold text-white font-display tracking-tight leading-[1.05] mb-5">
+          Shop for what your<br><span class="text-gradient-green">store needs.</span>
+        </h2>
+        <p class="text-slate-400 text-lg leading-relaxed">
+          Everything here is something I do for Shopify brands. Add what you need to your cart and send it over. I'll get back to you with a plan and a price. No commitment.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-2" role="tablist" aria-label="Filter services">
+        <button class="shop-filter is-active" data-filter="all">All</button>
+        <button class="shop-filter" data-filter="build">Build</button>
+        <button class="shop-filter" data-filter="grow">Grow</button>
+        <button class="shop-filter" data-filter="fix">Fix</button>
+      </div>
+    </div>
 
-<!-- Abstract Avatar / Visual -->
-<div class="w-full md:w-1/2 relative">
-<div class="aspect-square max-w-md mx-auto relative group">
-<!-- Rotating Rings -->
-<div class="absolute inset-0 rounded-full border border-dashed border-cyan-500/30 animate-[spin_10s_linear_infinite]"></div>
-<div class="absolute inset-4 rounded-full border border-dotted border-blue-500/30 animate-[spin_15s_linear_infinite_reverse]"></div>
+    <!-- Products -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="productGrid">
 
-<!-- Center Card -->
-<div class="absolute inset-12 bg-black/80 backdrop-blur-md rounded-2xl border border-white/10 flex flex-col items-center justify-center p-8 text-center glass-panel">
-<div class="w-20 h-20 bg-gradient-to-br from-cyan-500 to-blue-700 rounded-full mb-6 flex items-center justify-center shadow-lg shadow-cyan-500/20">
-<span class="font-display text-3xl font-bold text-white">F</span>
-</div>
-<h3 class="text-2xl text-white font-bold mb-1">Friedaze</h3>
-<p class="text-cyan-400 text-sm font-mono mb-4">@Blue_Dev</p>
-<div class="flex gap-2">
-<span class="px-2 py-1 bg-white/5 rounded text-[10px] uppercase border border-white/5">GMT+9</span>
-<span class="px-2 py-1 bg-white/5 rounded text-[10px] uppercase border border-white/5">English:Fluent</span>
-</div>
-</div>
-</div>
-</div>
-</div>
+      <article class="product" data-cat="build">
+        <div class="product-media">
+          <span class="product-tag">Build</span>
+          <svg viewBox="0 0 200 130" class="ill" aria-hidden="true">
+            <rect x="18" y="32" width="58" height="66" rx="8" class="s-dim" stroke-dasharray="5 5"/>
+            <path d="M30 50h34M30 62h26M30 74h30" class="s-dim"/>
+            <path d="M86 65h30" class="s-cyan flow"/><path d="M108 57l8 8-8 8" class="s-cyan"/>
+            <rect x="124" y="32" width="58" height="66" rx="8" class="s-green"/>
+            <path d="M141 56h24l-3 26h-18z" class="s-green"/><path d="M147 56v-4a6 6 0 0 1 12 0v4" class="s-green"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <h3>New store or migration</h3>
+          <p>A store built from scratch, or moved over from WooCommerce or Wix with your products, customers and old links intact.</p>
+          <ul><li>Store setup &amp; theme</li><li>Product &amp; customer import</li><li>Redirects so you keep Google traffic</li></ul>
+        </div>
+        <div class="product-foot">
+          <span class="price">Quoted per project</span>
+          <button class="add-btn" data-id="store" data-name="New store or migration"><span>Add to cart</span></button>
+        </div>
+      </article>
+
+      <article class="product" data-cat="build">
+        <div class="product-media">
+          <span class="product-tag">Build</span>
+          <svg viewBox="0 0 200 130" class="ill" aria-hidden="true">
+            <rect x="28" y="16" width="144" height="98" rx="8" class="s-dim"/>
+            <path d="M28 30h144" class="s-dim"/><circle cx="38" cy="23" r="2" class="s-dim"/><circle cx="46" cy="23" r="2" class="s-dim"/>
+            <rect x="40" y="40" width="120" height="30" rx="4" class="s-cyan" stroke-dasharray="4 4"/>
+            <path d="M140 46l8 8-14 14h-8v-8z" class="s-cyan pen"/>
+            <rect x="40" y="78" width="56" height="26" rx="4" class="s-dim"/><rect x="104" y="78" width="56" height="26" rx="4" class="s-dim"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <h3>Theme design &amp; changes</h3>
+          <p>Custom sections and page layouts built so you can edit the text and images yourself later.</p>
+          <ul><li>Custom sections &amp; templates</li><li>Mobile layout that actually works</li><li>Editable from your Shopify admin</li></ul>
+        </div>
+        <div class="product-foot">
+          <span class="price">Quoted per project</span>
+          <button class="add-btn" data-id="theme" data-name="Theme design & changes"><span>Add to cart</span></button>
+        </div>
+      </article>
+
+      <article class="product" data-cat="grow">
+        <div class="product-media">
+          <span class="product-tag tag-green">Grow</span>
+          <svg viewBox="0 0 200 130" class="ill" aria-hidden="true">
+            <rect x="24" y="20" width="70" height="92" rx="8" class="s-dim"/>
+            <rect x="34" y="30" width="50" height="36" rx="4" class="s-dim"/>
+            <path d="M34 76h40M34 84h28" class="s-dim"/>
+            <rect x="34" y="94" width="50" height="10" rx="5" class="s-green"/>
+            <path d="M116 104V84M138 104V66M160 104V40" class="s-green bars" stroke-width="10" stroke-linecap="round"/>
+            <path d="M112 60l22-14 14 8 24-24" class="s-cyan flow"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <h3>More sales from the same traffic</h3>
+          <p>Better product pages, cart and upsells. Small changes here usually do more than a full redesign.</p>
+          <ul><li>Product page cleanup</li><li>Bundles, upsells &amp; cart offers</li><li>Trust badges, reviews &amp; size guides</li></ul>
+        </div>
+        <div class="product-foot">
+          <span class="price">Quoted per project</span>
+          <button class="add-btn" data-id="cro" data-name="More sales (conversion work)"><span>Add to cart</span></button>
+        </div>
+      </article>
+
+      <article class="product" data-cat="grow">
+        <div class="product-media">
+          <span class="product-tag tag-green">Grow</span>
+          <svg viewBox="0 0 200 130" class="ill" aria-hidden="true">
+            <path d="M46 100a54 54 0 0 1 108 0" class="s-dim" stroke-width="8" stroke-linecap="round"/>
+            <path d="M46 100a54 54 0 0 1 96-34" class="s-green gauge" stroke-width="8" stroke-linecap="round"/>
+            <path d="M100 100l30-30" class="s-cyan needle" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="100" cy="100" r="5" class="s-cyan"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <h3>Speed &amp; SEO cleanup</h3>
+          <p>A faster store that shows up when people search for what you sell.</p>
+          <ul><li>Remove apps &amp; code you don't need</li><li>Fix slow images and scripts</li><li>Clear Search Console errors</li></ul>
+        </div>
+        <div class="product-foot">
+          <span class="price">Quoted per project</span>
+          <button class="add-btn" data-id="speed" data-name="Speed & SEO cleanup"><span>Add to cart</span></button>
+        </div>
+      </article>
+
+      <article class="product" data-cat="grow">
+        <div class="product-media">
+          <span class="product-tag tag-green">Grow</span>
+          <svg viewBox="0 0 200 130" class="ill" aria-hidden="true">
+            <circle cx="40" cy="65" r="16" class="s-green"/><circle cx="160" cy="34" r="14" class="s-cyan"/>
+            <circle cx="160" cy="96" r="14" class="s-cyan"/><circle cx="100" cy="65" r="12" class="s-dim"/>
+            <path d="M56 65h32M112 60c18-6 22-22 34-24M112 70c18 6 22 22 34 24" class="s-cyan flow"/>
+            <path d="M34 65l4 4 8-8" class="s-green"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <h3>Apps &amp; automation</h3>
+          <p>Your store connected to the tools you use, so your team stops doing the same thing by hand.</p>
+          <ul><li>Klaviyo &amp; abandoned cart emails</li><li>Shopify Flow automations</li><li>Inventory &amp; review app setup</li></ul>
+        </div>
+        <div class="product-foot">
+          <span class="price">Quoted per project</span>
+          <button class="add-btn" data-id="auto" data-name="Apps & automation"><span>Add to cart</span></button>
+        </div>
+      </article>
+
+      <article class="product" data-cat="fix">
+        <div class="product-media">
+          <span class="product-tag tag-pink">Fix</span>
+          <svg viewBox="0 0 200 130" class="ill" aria-hidden="true">
+            <rect x="20" y="24" width="72" height="82" rx="8" class="s-dim"/>
+            <path d="M56 46l18 32H38z" class="s-pink"/><path d="M56 58v8M56 71v1" class="s-pink"/>
+            <path d="M100 65h22" class="s-cyan flow"/><path d="M116 59l6 6-6 6" class="s-cyan"/>
+            <rect x="130" y="24" width="52" height="82" rx="8" class="s-green"/>
+            <circle cx="156" cy="62" r="14" class="s-green"/><path d="M149 62l5 5 9-10" class="s-green"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <h3>Fixes &amp; monthly support</h3>
+          <p>Something broke? Message me. Or keep me around for regular updates and sale prep.</p>
+          <ul><li>Urgent bug fixes</li><li>Ongoing monthly updates</li><li>Black Friday &amp; launch prep</li></ul>
+        </div>
+        <div class="product-foot">
+          <span class="price">Hourly or monthly</span>
+          <button class="add-btn" data-id="support" data-name="Fixes & monthly support"><span>Add to cart</span></button>
+        </div>
+      </article>
+    </div>
+
+    <!-- Quick add-ons -->
+    <div class="mt-16 p-6 md:p-8 rounded-2xl border border-white/10 bg-white/[0.02]">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-6">
+        <h3 class="text-white text-xl font-semibold">Quick fixes <span class="text-slate-500 font-normal text-base">· small jobs, add as many as you like</span></h3>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <button class="chip" data-id="q-landing" data-name="Landing page for a launch">Landing page for a launch</button>
+        <button class="chip" data-id="q-checkout" data-name="Broken cart or checkout">Broken cart or checkout</button>
+        <button class="chip" data-id="q-mobile" data-name="Mobile layout fixes">Mobile layout fixes</button>
+        <button class="chip" data-id="q-upload" data-name="Bulk product uploads">Bulk product uploads</button>
+        <button class="chip" data-id="q-filters" data-name="Collection filters">Collection filters</button>
+        <button class="chip" data-id="q-bf" data-name="Black Friday prep">Black Friday prep</button>
+        <button class="chip" data-id="q-apps" data-name="Removing slow apps">Removing slow apps</button>
+        <button class="chip" data-id="q-currency" data-name="Selling in other currencies">Selling in other currencies</button>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- SEO Mastery Section (New) -->
-<section id="seo" class="py-24 px-6 bg-white/[0.02]">
-<div class="max-w-7xl mx-auto">
-<div class="text-center max-w-3xl mx-auto mb-16">
-<h2 class="text-3xl md:text-5xl font-bold text-white font-display tracking-tight mb-4">SEO Engineering</h2>
-<p class="text-slate-400">I don't just build sites; I build engines that rank. Technical SEO is baked into every line of code.</p>
-</div>
+<!-- Order Status / Process -->
+<section id="process" class="py-28 px-6 border-t border-white/5">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-14">
+      <h2 class="text-4xl md:text-5xl font-bold text-white font-display tracking-tight mb-4">What happens after<br>you check out</h2>
+      <p class="text-slate-400 text-lg">Same as tracking a Shopify order. You always know where your project is.</p>
+    </div>
 
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-<!-- Lighthouse Visual -->
-<div class="bg-[#0f172a] rounded-xl border border-slate-800 p-6 md:p-8 relative shadow-2xl">
-<div class="flex justify-between items-center mb-8 border-b border-slate-800 pb-4">
-<span class="text-sm font-mono text-slate-400">audit_results.json</span>
-<div class="flex gap-2">
-<div class="w-3 h-3 rounded-full bg-red-500"></div>
-<div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-<div class="w-3 h-3 rounded-full bg-green-500"></div>
-</div>
-</div>
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+      <!-- Timeline -->
+      <div class="lg:col-span-3 rounded-2xl border border-white/10 bg-[#070a10] p-6 md:p-8">
+        <div class="flex items-center gap-4 pb-6 mb-6 border-b border-white/10">
+          <div class="w-12 h-12 rounded-full border-2 border-green-500 flex items-center justify-center shrink-0">
+            <i data-lucide="check" class="w-6 h-6 text-green-400"></i>
+          </div>
+          <div>
+            <p class="text-xs font-mono text-slate-500">Request #BLUE-0042</p>
+            <p class="text-white text-xl font-semibold">Thanks, your request is in!</p>
+          </div>
+        </div>
+        <ol class="timeline" id="timeline">
+          <li><span class="dot"></span><div><h4>Request received</h4><p>You send what you need and a link to your store.</p></div></li>
+          <li><span class="dot"></span><div><h4>I look at your store</h4><p>I go through the theme, apps and the problem you described.</p></div></li>
+          <li><span class="dot"></span><div><h4>You get a plan and a price</h4><p>What I'll do, how long it takes and what it costs. Nothing starts until you say yes.</p></div></li>
+          <li><span class="dot"></span><div><h4>I build on a copy of your theme</h4><p>Your live store keeps selling. You get updates and a preview link along the way.</p></div></li>
+          <li><span class="dot"></span><div><h4>Live, and I'm still around</h4><p>We publish together, I show your team how to manage it, and I'm here if anything comes up.</p></div></li>
+        </ol>
+      </div>
 
-<div class="flex justify-between gap-4 mb-8">
-<div class="text-center">
-<div class="w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-green-500 flex items-center justify-center mb-2 mx-auto shadow-[0_0_20px_rgba(34,197,94,0.3)]">
-<span class="text-2xl md:text-3xl font-bold text-green-400">100</span>
-</div>
-<span class="text-xs font-semibold text-slate-400">Performance</span>
-</div>
-<div class="text-center">
-<div class="w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-green-500 flex items-center justify-center mb-2 mx-auto">
-<span class="text-2xl md:text-3xl font-bold text-green-400">100</span>
-</div>
-<span class="text-xs font-semibold text-slate-400">Accessibility</span>
-</div>
-<div class="text-center">
-<div class="w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-green-500 flex items-center justify-center mb-2 mx-auto">
-<span class="text-2xl md:text-3xl font-bold text-green-400">100</span>
-</div>
-<span class="text-xs font-semibold text-slate-400">SEO</span>
-</div>
-</div>
-
-<div class="space-y-3 font-mono text-xs md:text-sm">
-<div class="flex justify-between items-center text-green-400">
-<span><i data-lucide="check" class="inline w-4 h-4 mr-2"></i>Core Web Vitals</span>
-<span>PASSED</span>
-</div>
-<div class="flex justify-between items-center text-green-400">
-<span><i data-lucide="check" class="inline w-4 h-4 mr-2"></i>Structured Data (Schema)</span>
-<span>VALID</span>
-</div>
-<div class="flex justify-between items-center text-green-400">
-<span><i data-lucide="check" class="inline w-4 h-4 mr-2"></i>Mobile Usability</span>
-<span>OPTIMIZED</span>
-</div>
-</div>
-</div>
-
-  
-
-<!-- SEO Services List -->
-<div class="grid gap-6">
-<div class="group p-5 border border-white/5 bg-white/5 rounded-lg hover:border-cyan-500/30 transition-colors">
-<h3 class="text-white font-semibold text-lg mb-2 flex items-center gap-2">
-<i data-lucide="zap" class="w-5 h-5 text-yellow-400"></i> Speed Optimization
-</h3>
-<p class="text-sm text-slate-400">Asset minification, lazy loading, and critical CSS generation to ensure sub-second load times.</p>
-</div>
-<div class="group p-5 border border-white/5 bg-white/5 rounded-lg hover:border-cyan-500/30 transition-colors">
-<h3 class="text-white font-semibold text-lg mb-2 flex items-center gap-2">
-<i data-lucide="search" class="w-5 h-5 text-blue-400"></i> Technical SEO
-</h3>
-<p class="text-sm text-slate-400">XML sitemaps, robots.txt, canonical tags, and solving crawl budget issues for large sites.</p>
-</div>
-<div class="group p-5 border border-white/5 bg-white/5 rounded-lg hover:border-cyan-500/30 transition-colors">
-<h3 class="text-white font-semibold text-lg mb-2 flex items-center gap-2">
-<i data-lucide="code" class="w-5 h-5 text-purple-400"></i> Schema Markup
-</h3>
-<p class="text-sm text-slate-400">JSON-LD implementation for rich snippets (Product, Article, Organization) to dominate SERPs.</p>
-</div>
-</div>
-</div>
-</div>
+      <!-- Summary -->
+      <div class="lg:col-span-2 rounded-2xl border border-white/10 bg-[#070a10] p-6 md:p-8 flex flex-col">
+        <p class="text-white font-semibold mb-6">Included with every order</p>
+        <div class="space-y-4 text-sm flex-1">
+          <div class="summary-row"><span>Clear scope before work starts</span><span>Included</span></div>
+          <div class="summary-row"><span>Price agreed upfront</span><span>Included</span></div>
+          <div class="summary-row"><span>Work done off your live store</span><span>Included</span></div>
+          <div class="summary-row"><span>Progress updates</span><span>Included</span></div>
+          <div class="summary-row"><span>Handover so your team can edit</span><span>Included</span></div>
+          <div class="summary-row"><span>Help after launch</span><span>Included</span></div>
+        </div>
+        <div class="flex justify-between items-baseline pt-6 mt-6 border-t border-white/10">
+          <span class="text-slate-400">Surprises</span>
+          <span class="text-2xl font-display font-bold text-white">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-  <!-- Shopify Projects -->
-  <section id="shopify-work" class="py-32 relative overflow-hidden">
+
+<!-- Shopify Projects -->
+  <section id="work" class="py-32 relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-6 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
     <div>
       <div class="flex items-center gap-3 mb-4">
         <span class="w-12 h-[1px] bg-green-500"></span>
-        <span class="text-green-500 font-mono text-sm uppercase tracking-widest">E-commerce Solutions</span>
+        <span class="text-green-500 font-mono text-sm uppercase tracking-widest">Recent work</span>
       </div>
       <h2 class="text-4xl md:text-6xl font-semibold text-white tracking-tighter neon-blue mb-2">
-        SHOPIFY <br> COLLECTIONS
+        STORES I'VE <br> WORKED ON
       </h2>
-      <p class="text-slate-500">High-conversion stores & custom Liquid development.</p>
+      <p class="text-slate-500">Click any store to see it live.</p>
     </div>
     <div class="flex gap-2">
       <button id="shopPrevBtn" class="p-3 rounded-full border border-white/10 hover:bg-white/10 transition text-white active:scale-90">
@@ -464,6 +631,176 @@ I combine the aesthetic eye of a designer with the ruthless efficiency of a syst
   <div id="shopifyContainer" class="w-full overflow-x-auto no-scrollbar scroll-smooth pl-6 md:pl-[max(2rem,calc((100vw-80rem)/2))]">
     <div class="flex gap-8 w-max snap-x snap-mandatory pb-12">
 <!-- NEW ADDED SHOPIFY WEBSITES -->
+      <a href="https://www.aussie-pet.com/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
+        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
+          <img src="https://s.wordpress.com/mshots/v1/https://www.aussie-pet.com/?w=1920" alt="Aussie Pet store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Aussie Pet</h3>
+            <p class="text-sm text-slate-400">Variant design &amp; more · Pet · Australia</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://us.ezdupe.com/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
+        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
+          <img src="https://s.wordpress.com/mshots/v1/https://us.ezdupe.com/?w=1920" alt="EZ Dupe store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">EZ Dupe</h3>
+            <p class="text-sm text-slate-400">Online Store · USA</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://acumendisc.com/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
+        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
+          <img src="https://s.wordpress.com/mshots/v1/https://acumendisc.com/?w=1920" alt="Acumen Disc store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Acumen Disc</h3>
+            <p class="text-sm text-slate-400">Online Store</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://beautybritain.uk/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
+        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
+          <img src="https://s.wordpress.com/mshots/v1/https://beautybritain.uk/?w=1920" alt="Beauty Britain store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Beauty Britain</h3>
+            <p class="text-sm text-slate-400">Product page design · Beauty · UK</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://polska-uroda.pl/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
+        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
+          <img src="https://s.wordpress.com/mshots/v1/https://polska-uroda.pl/?w=1920" alt="Polska Uroda store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Polska Uroda</h3>
+            <p class="text-sm text-slate-400">Product page design · Beauty · Poland</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://mipequenito.mx/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
+        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
+          <img src="https://s.wordpress.com/mshots/v1/https://mipequenito.mx/?w=1920" alt="Mi Pequeñito store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Mi Pequeñito</h3>
+            <p class="text-sm text-slate-400">Online Store · Mexico</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://onzewondertjes.nl/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
+        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
+          <img src="https://s.wordpress.com/mshots/v1/https://onzewondertjes.nl/?w=1920" alt="Onze Wondertjes store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Onze Wondertjes</h3>
+            <p class="text-sm text-slate-400">Online Store · Netherlands</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://svenskabeauty.se/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
+        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
+          <img src="https://s.wordpress.com/mshots/v1/https://svenskabeauty.se/?w=1920" alt="Svenska Beauty store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Svenska Beauty</h3>
+            <p class="text-sm text-slate-400">Product page design · Beauty · Sweden</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://beautykiwi.nz/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
+        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
+          <img src="https://s.wordpress.com/mshots/v1/https://beautykiwi.nz/?w=1920" alt="Beauty Kiwi store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Beauty Kiwi</h3>
+            <p class="text-sm text-slate-400">Product page design · Beauty · New Zealand</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://beauty-australia.com/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
+        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
+          <img src="https://s.wordpress.com/mshots/v1/https://beauty-australia.com/?w=1920" alt="Beauty Australia store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Beauty Australia</h3>
+            <p class="text-sm text-slate-400">Product page design · Beauty · Australia</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://paw-friend.com/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
+        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
+          <img src="https://s.wordpress.com/mshots/v1/https://paw-friend.com/?w=1920" alt="Paw-Friend store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Paw-Friend</h3>
+            <p class="text-sm text-slate-400">Variant design &amp; more · Pet</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://kiwiwags.nz/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
+        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
+          <img src="https://s.wordpress.com/mshots/v1/https://kiwiwags.nz/?w=1920" alt="Kiwiwags store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Kiwiwags</h3>
+            <p class="text-sm text-slate-400">Variant design &amp; more · Pet · New Zealand</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://palsglad.se/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
+        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
+          <img src="https://s.wordpress.com/mshots/v1/https://palsglad.se/?w=1920" alt="Palsglad store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Palsglad</h3>
+            <p class="text-sm text-slate-400">Variant design &amp; more · Pet · Sweden</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://zoologiczny-plus.pl/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
+        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
+          <img src="https://s.wordpress.com/mshots/v1/https://zoologiczny-plus.pl/?w=1920" alt="Zoologiczny Plus store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Zoologiczny Plus</h3>
+            <p class="text-sm text-slate-400">Variant design &amp; more · Pet · Poland</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://britishpets.uk/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
+        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
+          <img src="https://s.wordpress.com/mshots/v1/https://britishpets.uk/?w=1920" alt="British Pets store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">British Pets</h3>
+            <p class="text-sm text-slate-400">Variant design &amp; more · Pet · UK</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://tierbedarf-pro.de/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
+        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
+          <img src="https://s.wordpress.com/mshots/v1/https://tierbedarf-pro.de/?w=1920" alt="Tierbedarf Pro store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Tierbedarf Pro</h3>
+            <p class="text-sm text-slate-400">Variant design &amp; more · Pet · Germany</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://tierbedarfschweiz.ch/" target="_blank" rel="noopener noreferrer" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
+        <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
+          <img src="https://s.wordpress.com/mshots/v1/https://tierbedarfschweiz.ch/?w=1920" alt="Tierbedarf Schweiz store homepage" loading="lazy" class="absolute w-full h-full object-cover object-top opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+          <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+            <h3 class="text-2xl text-white font-bold group-hover:text-green-400">Tierbedarf Schweiz</h3>
+            <p class="text-sm text-slate-400">Variant design &amp; more · Pet · Switzerland</p>
+          </div>
+        </div>
+      </a>
+
 
       <a href="https://ultragameshop.com/" target="_blank" class="card-perspective group relative w-[85vw] md:w-[700px] h-[450px] snap-center shrink-0 block">
         <div class="absolute inset-0 bg-black border border-white/10 group-hover:border-green-500/50 overflow-hidden rounded-xl">
@@ -649,100 +986,7 @@ I combine the aesthetic eye of a designer with the ruthless efficiency of a syst
 </script>
 
 
-<!-- Stack Section -->
-<section id="stack" class="py-24 px-6 border-y border-white/5">
-  <div class="max-w-7xl mx-auto">
-    
-    <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-      <div>
-        <h2 class="text-3xl md:text-5xl font-semibold text-white tracking-tight mb-2">The Stack</h2>
-        <p class="text-slate-500">Premium tools chosen for scalability and speed.</p>
-      </div>
-      <div class="h-px bg-white/10 flex-grow md:ml-12 hidden md:block"></div>
-    </div>
-
-    <h3 class="text-white/40 uppercase text-xs font-bold tracking-widest mb-6">Core Platforms</h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-      <div class="p-4 border border-white/5 bg-white/[0.02] text-center hover:bg-white/5 transition-colors group">
-        <i data-lucide="layout-template" class="w-8 h-8 text-blue-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
-        <h4 class="text-white text-sm font-medium">WordPress</h4>
-      </div>
-      <div class="p-4 border border-white/5 bg-white/[0.02] text-center hover:bg-white/5 transition-colors group">
-        <i data-lucide="shopping-bag" class="w-8 h-8 text-green-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
-        <h4 class="text-white text-sm font-medium">Shopify</h4>
-      </div>
-      <div class="p-4 border border-white/5 bg-white/[0.02] text-center hover:bg-white/5 transition-colors group">
-        <i data-lucide="layers" class="w-8 h-8 text-pink-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
-        <h4 class="text-white text-sm font-medium">Elementor</h4>
-      </div>
-      <div class="p-4 border border-white/5 bg-white/[0.02] text-center hover:bg-white/5 transition-colors group">
-        <i data-lucide="boxes" class="w-8 h-8 text-purple-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
-        <h4 class="text-white text-sm font-medium">WooCommerce</h4>
-      </div>
-      <div class="p-4 border border-white/5 bg-white/[0.02] text-center hover:bg-white/5 transition-colors group">
-        <i data-lucide="droplets" class="w-8 h-8 text-blue-300 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
-        <h4 class="text-white text-sm font-medium">Liquid</h4>
-      </div>
-      <div class="p-4 border border-white/5 bg-white/[0.02] text-center hover:bg-white/5 transition-colors group">
-        <i data-lucide="file-json" class="w-8 h-8 text-orange-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
-        <h4 class="text-white text-sm font-medium">ACF / Meta</h4>
-      </div>
-    </div>
-
-    <h3 class="text-white/40 uppercase text-xs font-bold tracking-widest mb-6">SEO & Growth</h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-      <div class="p-4 border border-white/5 bg-white/[0.02] text-center hover:bg-white/5 transition-colors group">
-        <i data-lucide="search-check" class="w-8 h-8 text-orange-500 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
-        <h4 class="text-white text-sm font-medium">Semrush</h4>
-      </div>
-      <div class="p-4 border border-white/5 bg-white/[0.02] text-center hover:bg-white/5 transition-colors group">
-        <i data-lucide="gauge" class="w-8 h-8 text-yellow-500 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
-        <h4 class="text-white text-sm font-medium">RankMath</h4>
-      </div>
-      <div class="p-4 border border-white/5 bg-white/[0.02] text-center hover:bg-white/5 transition-colors group">
-        <i data-lucide="bar-chart-3" class="w-8 h-8 text-blue-500 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
-        <h4 class="text-white text-sm font-medium">GA4 / GSC</h4>
-      </div>
-      <div class="p-4 border border-white/5 bg-white/[0.02] text-center hover:bg-white/5 transition-colors group">
-        <i data-lucide="mail" class="w-8 h-8 text-indigo-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
-        <h4 class="text-white text-sm font-medium">Klaviyo</h4>
-      </div>
-      <div class="p-4 border border-white/5 bg-white/[0.02] text-center hover:bg-white/5 transition-colors group">
-        <i data-lucide="zap" class="w-8 h-8 text-yellow-300 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
-        <h4 class="text-white text-sm font-medium">Shopify Flow</h4>
-      </div>
-      <div class="p-4 border border-white/5 bg-white/[0.02] text-center hover:bg-white/5 transition-colors group">
-        <i data-lucide="line-chart" class="w-8 h-8 text-red-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
-        <h4 class="text-white text-sm font-medium">Ahrefs</h4>
-      </div>
-    </div>
-
-    <h3 class="text-white/40 uppercase text-xs font-bold tracking-widest mb-6">Development</h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-      <div class="p-4 border border-white/5 bg-white/[0.02] text-center hover:bg-white/5 transition-colors group">
-        <i data-lucide="file-code-2" class="w-8 h-8 text-cyan-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
-        <h4 class="text-white text-sm font-medium">Next.js</h4>
-      </div>
-      <div class="p-4 border border-white/5 bg-white/[0.02] text-center hover:bg-white/5 transition-colors group">
-        <i data-lucide="wind" class="w-8 h-8 text-sky-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
-        <h4 class="text-white text-sm font-medium">Tailwind</h4>
-      </div>
-      <div class="p-4 border border-white/5 bg-white/[0.02] text-center hover:bg-white/5 transition-colors group">
-        <i data-lucide="database" class="w-8 h-8 text-yellow-400 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
-        <h4 class="text-white text-sm font-medium">MySQL/PHP</h4>
-      </div>
-      <div class="p-4 border border-white/5 bg-white/[0.02] text-center hover:bg-white/5 transition-colors group">
-        <i data-lucide="git-branch" class="w-8 h-8 text-orange-600 mx-auto mb-3 group-hover:scale-110 transition-transform"></i>
-        <h4 class="text-white text-sm font-medium">Git</h4>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-  
-
- <!-- Upwork Reviews (The Flex) -->
+<!-- Upwork Reviews (The Flex) -->
         <section id="reviews" class="py-24 relative bg-black">
             <div class="max-w-7xl mx-auto px-6 mb-12">
                 <div class="flex items-center gap-3 mb-4">
@@ -971,35 +1215,20 @@ I combine the aesthetic eye of a designer with the ruthless efficiency of a syst
 
 
   
-<!-- add new wordpress here -->
-<script>
-  const container = document.getElementById('carouselContainer');
-  const nextBtn = document.getElementById('nextBtn');
-  const prevBtn = document.getElementById('prevBtn');
-  const scrollAmount = 500; 
 
-  nextBtn.addEventListener('click', () => {
-    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  });
-
-  prevBtn.addEventListener('click', () => {
-    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-  });
-</script>
 <!-- CTA Section -->
 <section id="contact" class="py-24 px-6 relative border-t border-white/5">
 <div class="max-w-4xl mx-auto text-center relative z-10">
-<i data-lucide="mail" class="w-12 h-12 text-cyan-400 mx-auto mb-6"></i>
+<i data-lucide="message-circle" class="w-12 h-12 text-green-400 mx-auto mb-6"></i>
 <h2 class="text-5xl md:text-7xl font-bold text-white tracking-tight mb-8 font-display">
-ProJect in Mind?
+Not sure what you need?
 </h2>
 <p class="text-slate-400 mb-10 text-xl font-light">
-                    I am currently accepting new clients for <span class="text-white">2026</span>. 
-                   Let's discuss how we can elevate your brand.
+Send me your store link and tell me what's bugging you. We'll figure out the rest together.
 </p>
 <div class="flex flex-col sm:flex-row justify-center gap-4">
 <a href="mailto:friedazebaliliworks@gmail.com"
-class="px-8 py-4 bg-white text-black font-bold rounded hover:bg-cyan-400 transition-all duration-300">
+class="px-8 py-4 bg-white text-black font-bold rounded hover:bg-green-400 transition-all duration-300">
 Email Friedaze
 </a>
 <a href="https://www.upwork.com/freelancers/~018d5e38c5c45f46b4"
@@ -1022,21 +1251,135 @@ Hire on Upwork
 <div class="flex flex-col items-center justify-center gap-6">
 <h4 class="font-display font-bold text-2xl tracking-tighter text-white">FRIEDAZE | BLUE</h4>
 <div class="flex gap-8 text-slate-500">
-<a href="#" class="hover:text-cyan-400 transition-colors"><i data-lucide="github" class="w-5 h-5"></i></a>
-<a href="#" class="hover:text-cyan-400 transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
-<a href="#" class="hover:text-cyan-400 transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
-<a href="#" class="hover:text-green-500 transition-colors"><i data-lucide="briefcase" class="w-5 h-5"></i></a>
+<a href="mailto:friedazebaliliworks@gmail.com" class="hover:text-cyan-400 transition-colors" aria-label="Email"><i data-lucide="mail" class="w-5 h-5"></i></a>
+<a href="https://www.upwork.com/freelancers/~018d5e38c5c45f46b4" target="_blank" rel="noopener noreferrer" class="hover:text-green-500 transition-colors" aria-label="Upwork"><i data-lucide="briefcase" class="w-5 h-5"></i></a>
 </div>
 <div class="text-xs text-slate-700 flex flex-col gap-2">
-<p>© 2024 Friedaze. All rights reserved.</p>
+<p>© 2026 Friedaze. All rights reserved.</p>
 <p>Designed in the Void.</p>
 </div>
 </div>
 </footer>
 
+<!-- Floating cart button -->
+<button id="cartFab" class="cart-fab" aria-label="Open your request cart">
+  <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+  <span class="cart-count" data-cart-count>0</span>
+</button>
+
+<!-- Cart drawer -->
+<div id="cartOverlay" class="cart-overlay"></div>
+<aside id="cartDrawer" class="cart-drawer" aria-label="Your request" aria-hidden="true">
+  <div class="flex items-center justify-between p-6 border-b border-white/10">
+    <h3 class="text-white text-lg font-semibold">Your request (<span data-cart-count>0</span>)</h3>
+    <button id="cartClose" class="p-2 rounded-full hover:bg-white/10 text-slate-300" aria-label="Close cart"><i data-lucide="x" class="w-5 h-5"></i></button>
+  </div>
+  <div class="flex-1 overflow-y-auto p-6">
+    <div id="cartEmpty" class="text-center py-10">
+      <i data-lucide="shopping-bag" class="w-10 h-10 text-slate-600 mx-auto mb-4"></i>
+      <p class="text-slate-400 mb-4">Your cart is empty.</p>
+      <a href="#services" class="text-cyan-400 text-sm hover:underline" data-close-cart>Browse services</a>
+    </div>
+    <ul id="cartItems" class="space-y-3"></ul>
+    <div id="cartForm" class="mt-8 space-y-4 hidden">
+      <label class="block">
+        <span class="text-xs uppercase tracking-widest text-slate-500">Your store link</span>
+        <input id="cartStore" type="text" placeholder="yourstore.com" class="cart-input">
+      </label>
+      <label class="block">
+        <span class="text-xs uppercase tracking-widest text-slate-500">Anything I should know?</span>
+        <textarea id="cartNote" rows="4" placeholder="What's going on with your store, deadlines, etc." class="cart-input"></textarea>
+      </label>
+    </div>
+  </div>
+  <div class="p-6 border-t border-white/10 space-y-3">
+    <p class="text-xs text-slate-500">You're not paying anything. This just sends me an email with what you picked.</p>
+    <button id="cartCheckout" class="w-full py-4 rounded-lg bg-green-500 hover:bg-green-400 text-black font-bold transition-colors disabled:opacity-40 disabled:cursor-not-allowed" disabled>Send request</button>
+    <a href="https://www.upwork.com/freelancers/~018d5e38c5c45f46b4" target="_blank" rel="noopener noreferrer" class="block text-center text-sm text-slate-400 hover:text-white">or hire me on Upwork →</a>
+  </div>
+</aside>
+
+
 <script>
 lucide.createIcons();
 </script>
+<script>
+(function(){
+  const EMAIL='friedazebaliliworks@gmail.com';
+  let cart=[];
+  try{cart=JSON.parse(localStorage.getItem('blueCart')||'[]')}catch(e){}
+  const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+  const drawer=$('#cartDrawer'), overlay=$('#cartOverlay'), fab=$('#cartFab');
+
+  function save(){try{localStorage.setItem('blueCart',JSON.stringify(cart))}catch(e){}}
+  function render(){
+    $$('[data-cart-count]').forEach(el=>el.textContent=cart.length);
+    document.querySelector('.nav-cart .cart-count').style.display=cart.length?'':'none';
+    fab.classList.toggle('show',cart.length>0);
+    $('#cartEmpty').classList.toggle('hidden',cart.length>0);
+    $('#cartForm').classList.toggle('hidden',cart.length===0);
+    $('#cartCheckout').disabled=cart.length===0;
+    const ul=$('#cartItems'); ul.innerHTML='';
+    cart.forEach(it=>{
+      const li=document.createElement('li'); li.className='cart-item';
+      const span=document.createElement('span'); span.textContent=it.name;
+      const rm=document.createElement('button'); rm.setAttribute('aria-label','Remove '+it.name); rm.textContent='×';
+      rm.onclick=()=>toggle(it.id,it.name);
+      li.append(span,rm); ul.appendChild(li);
+    });
+    $$('.add-btn,.chip').forEach(b=>{
+      const on=cart.some(i=>i.id===b.dataset.id);
+      b.classList.toggle('added',on); b.setAttribute('aria-pressed',on);
+      if(b.classList.contains('add-btn')){b.querySelector('span').textContent=on?'✓ In cart':'Add to cart';b.closest('.product').classList.toggle('in-cart',on)}
+    });
+  }
+  function toggle(id,name){
+    const i=cart.findIndex(x=>x.id===id);
+    if(i>-1)cart.splice(i,1);else{cart.push({id,name});fab.classList.remove('bump');void fab.offsetWidth;fab.classList.add('bump')}
+    save();render();
+  }
+  function open(){drawer.classList.add('open');overlay.classList.add('open');drawer.setAttribute('aria-hidden','false')}
+  function close(){drawer.classList.remove('open');overlay.classList.remove('open');drawer.setAttribute('aria-hidden','true')}
+
+  $$('.add-btn,.chip').forEach(b=>b.addEventListener('click',()=>toggle(b.dataset.id,b.dataset.name)));
+  $$('[data-open-cart]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();open()}));
+  fab.onclick=open; overlay.onclick=close; $('#cartClose').onclick=close;
+  $$('[data-close-cart]').forEach(a=>a.addEventListener('click',close));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+
+  $('#cartCheckout').onclick=()=>{
+    const store=$('#cartStore').value.trim(), note=$('#cartNote').value.trim();
+    const body='Hi Friedaze,\n\nI\'d like help with:\n'+cart.map(i=>'- '+i.name).join('\n')+
+      (store?'\n\nMy store: '+store:'')+(note?'\n\nMore details:\n'+note:'')+'\n\nThanks!';
+    location.href='mailto:'+EMAIL+'?subject='+encodeURIComponent('Shopify help request')+'&body='+encodeURIComponent(body);
+  };
+
+  // Filters
+  $$('.shop-filter').forEach(f=>f.addEventListener('click',()=>{
+    $$('.shop-filter').forEach(x=>x.classList.remove('is-active')); f.classList.add('is-active');
+    $$('.product').forEach(p=>p.classList.toggle('is-hidden',f.dataset.filter!=='all'&&p.dataset.cat!==f.dataset.filter));
+  }));
+
+  // Timeline progress on scroll
+  const tl=$('#timeline');
+  if(tl){
+    const steps=tl.querySelectorAll('li');
+    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+      tl.style.setProperty('--progress','100%');
+      steps.forEach((s,i)=>setTimeout(()=>s.classList.add('done'),i*320));
+      io.disconnect();
+    }})},{threshold:.35});
+    io.observe(tl);
+  }
+
+  // Seamless review loop: duplicate the cards once
+  const track=$('.review-track');
+  if(track){[...track.children].forEach(c=>{const d=c.cloneNode(true);d.setAttribute('aria-hidden','true');track.appendChild(d)})}
+
+  render();
+})();
+</script>
+
 <script>
     const cursor = document.getElementById('neon-cursor');
     const dot = document.getElementById('neon-dot');
