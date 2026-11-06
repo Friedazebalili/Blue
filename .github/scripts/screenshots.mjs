@@ -14,7 +14,8 @@ const CONSENT = ['Accept', 'Accept all', 'Accept All', 'Allow all', 'Allow All',
   'Akceptuję', 'Zaakceptuj', 'Akzeptieren', 'Alle akzeptieren', 'Godkänn', 'Acceptera', 'Accepteren', 'Aceptar'];
 const BLOCKED = /checking your browser|verify you are human|are you a robot|attention required|access denied|just a moment/i;
 
-const browser = await chromium.launch();
+// Real Google Chrome plays video banners (H.264); fall back to bundled Chromium.
+const browser = await chromium.launch({ channel: 'chrome' }).catch(() => chromium.launch());
 const context = await browser.newContext({
   viewport: { width: W, height: H },
   deviceScaleFactor: 1,
@@ -23,26 +24,26 @@ const context = await browser.newContext({
 });
 
 // Hide popups, newsletter modals, chat bubbles and cookie banners.
+// Never hides <html>, <body>, the header, or anything that holds the page's main content.
 async function hideOverlays(page) {
   await page.evaluate(({ W, H }) => {
-    const sel = '[role="dialog"],[aria-modal="true"],.klaviyo-form,[class*="klaviyo"],[id*="klaviyo"],[class*="popup"],[id*="popup"],[class*="Popup"],[class*="newsletter-modal"],[class*="modal"][class*="open"],[class*="cookie"],[id*="cookie"],[class*="consent"],[id*="consent"],[id*="shopify-chat"],[class*="chat-widget"],iframe[title*="chat" i]';
+    const main = document.querySelector('main, #MainContent, [role="main"]');
+    const safe = el => el === document.documentElement || el === document.body ||
+      el.closest('header') || (main && (el === main || el.contains(main) || main.contains(el)));
+    const hide = el => el.style.setProperty('display', 'none', 'important');
+    const sel = '[role="dialog"],[aria-modal="true"],[class*="klaviyo"],[id*="klaviyo"],[id*="smile-ui"],[class*="popup"],[id*="popup"],[class*="Popup"],[class*="cookie"],[id*="cookie"],[class*="consent"],[id*="consent"],[id*="shopify-chat"],[class*="chat-widget"],iframe[title*="chat" i],iframe[id*="launcher"]';
     document.querySelectorAll(sel).forEach(el => {
-      const r = el.getBoundingClientRect();
-      if (el.closest('header')) return;
-      if (r.width * r.height > 0) el.style.setProperty('display', 'none', 'important');
-    });
-    // Any other fixed layer that covers a big part of the screen (overlays, backdrops)
-    for (const el of document.querySelectorAll('body *')) {
+      if (safe(el)) return;
       const cs = getComputedStyle(el);
-      if (cs.position !== 'fixed' && cs.position !== 'sticky') continue;
-      if (el.closest('header') || /header|announcement|nav/i.test(el.className + ' ' + el.id)) continue;
+      if (cs.position === 'fixed' || el.matches('[role="dialog"],[aria-modal="true"],iframe') || el.closest('[style*="position: fixed"]')) hide(el);
+    });
+    // Other fixed layers covering a big part of the screen (overlays, backdrops)
+    for (const el of document.querySelectorAll('body *')) {
+      if (getComputedStyle(el).position !== 'fixed' || safe(el)) continue;
       const r = el.getBoundingClientRect();
-      if (r.width * r.height > W * H * 0.25) el.style.setProperty('display', 'none', 'important');
+      if (r.width * r.height > W * H * 0.25) hide(el);
     }
-    for (const el of [document.documentElement, document.body]) {
-      el.style.setProperty('overflow', 'visible', 'important');
-      el.classList.remove('modal-open', 'overflow-hidden', 'no-scroll');
-    }
+    for (const el of [document.documentElement, document.body]) el.style.setProperty('overflow', 'visible', 'important');
   }, { W, H });
 }
 
